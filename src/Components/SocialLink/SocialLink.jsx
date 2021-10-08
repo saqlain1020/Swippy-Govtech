@@ -14,7 +14,9 @@ import Tiktok from "src/Assets/icon/tiktok.png";
 import Whatsapp from "src/Assets/icon/whatsapp.png";
 import Facebook from "src/Assets/icon/facebook.png";
 import { Link } from "react-router-dom";
-import AddSocialDialog from './../AddSocialDialog/AddSocialDialog';
+import AddSocialDialog from "./../AddSocialDialog/AddSocialDialog";
+import { connect } from "react-redux";
+import { deleteSocial } from "src/Redux/user/userActions";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -30,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SocialLink = ({ icon, title, url, id }) => {
+const SocialLink = ({ icon, title, url, index, deleteSocial }) => {
   const classes = useStyles();
   const [src, setSrc] = React.useState(Link);
   const [open, setOpen] = React.useState(false);
@@ -69,10 +71,20 @@ const SocialLink = ({ icon, title, url, id }) => {
     }
   }, []);
 
+  const handleDelete = () => {
+    deleteSocial(index);
+  };
+
   return (
     <div>
       <a href={url} className={classes.root}>
-        <img width="130px" height="130px" className={classes.img} src={src} />
+        <img
+          width="130px"
+          height="130px"
+          className={classes.img}
+          src={src}
+          alt="social"
+        />
         <Typography variant="h6" align="center" className={classes.text}>
           <b>{title}</b>
         </Typography>
@@ -81,20 +93,25 @@ const SocialLink = ({ icon, title, url, id }) => {
         <IconButton size="small" onClick={() => setOpen(true)}>
           <BorderColorIcon />
         </IconButton>
-        <IconButton size="small">
+        <IconButton size="small" onClick={handleDelete}>
           <DeleteIcon />
         </IconButton>
       </div>
       <AddSocialDialog
         open={open}
         onClose={() => setOpen(false)}
-        social={{ icon, title, url, id }}
+        edit={true}
+        social={{ icon, title, url, index }}
       />
     </div>
   );
 };
 
-export default SocialLink;
+const actions = {
+  deleteSocial,
+};
+
+export default connect(null, actions)(SocialLink);
 
 SocialLink.propTypes = {
   icon: PropTypes.string,

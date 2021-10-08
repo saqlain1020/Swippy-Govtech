@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, TextField } from '@material-ui/core';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
 import { Link } from 'react-router-dom';
 
@@ -21,9 +21,18 @@ const Test = () => {
 
     return (
         <div className={classes.root}>
-            <BurgerMenu items={menuItems}>
-
-            </BurgerMenu>
+            <form>
+            <TextField
+              type="url"      
+            inputProps={{
+                pattern: "(http|https)://(.)+[.](.)+"
+            }}        
+              required
+              fullWidth
+              label="URL"
+            />
+            <button type="submit">asd</button>
+            </form>
             
         </div>
     )

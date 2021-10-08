@@ -6,27 +6,27 @@ import Logo from "src/Assets/images/logo.png";
 import Login from "src/Components/Login/Login";
 import Signup from "src/Components/Signup/Signup";
 import { Route } from "react-router";
-import Bg from "src/Assets/images/black-bg.jpg"
+import Bg from "src/Assets/images/black-bg.jpg";
+import { connect } from "react-redux";
+import history from "src/Routes/history";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
     minHeight: "100vh",
     background: theme.palette.primary.main,
-    background: "#101942",
-    background: "wheat",
-    postion:"relative",
-    "&:before":{
+    postion: "relative",
+    "&:before": {
       content: "''",
       background: `url(${Bg})`,
       filter: "saturate(0.3) brightness(0.5)",
-      backgroundSize:"cover",
-      height:"100%",
-      width:"100%",
-      position:"absolute",
-      top:0,
-      left:0,
-    }
+      backgroundSize: "cover",
+      height: "100%",
+      width: "100%",
+      position: "absolute",
+      top: 0,
+      left: 0,
+    },
   },
   container: {
     width: "100%",
@@ -77,8 +77,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Auth = () => {
+const Auth = (user) => {
   const classes = useStyles();
+
+  React.useEffect(() => {
+    if (user.uid) history.push("/dashboard/profile");
+  }, []);
 
   return (
     <div className={clsx(classes.root, "center")}>
@@ -94,4 +98,8 @@ const Auth = () => {
   );
 };
 
-export default Auth;
+const mapState = (store) => ({
+  user: store.user,
+});
+
+export default connect(mapState)(Auth);

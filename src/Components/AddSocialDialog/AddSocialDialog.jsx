@@ -11,6 +11,8 @@ import {
   Typography,
 } from "@material-ui/core";
 import { v4 as uuid } from "uuid";
+import { connect } from "react-redux";
+import { addSocial, updateSocials } from "src/Redux/user/userActions";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -20,6 +22,7 @@ const socials = [
   "instagram",
   "snapchat",
   "twitter",
+  "facebook",
   "linkedin",
   "message",
   "spotify",
@@ -28,19 +31,34 @@ const socials = [
   "link",
 ];
 
-const AddSocialDialog = ({ open, onClose, social }) => {
+const AddSocialDialog = ({
+  open,
+  onClose,
+  social,
+  addSocial,
+  updateSocials,
+  edit = false,
+}) => {
   const classes = useStyles();
-  const [type, setType] = React.useState(social?.icon || "");
+  const [icon, setIcon] = React.useState(social?.icon || "");
   const [url, setUrl] = React.useState(social?.url || "");
   const [title, setTitle] = React.useState(social?.title || "");
 
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault();
-    if (social?.id) {
+    let obj = {
+      icon,
+      url,
+      title,
+    };
+
+    if (edit) {
       // update
+      await updateSocials(obj, social.index);
     } else {
-      // Add
+      await addSocial(obj);
     }
+    onClose();
   };
 
   return (
@@ -70,8 +88,8 @@ const AddSocialDialog = ({ open, onClose, social }) => {
           </Grid>
           <Grid item xs={12}>
             <Select
-              value={type}
-              onChange={(e) => setType(e.target.value)}
+              value={icon}
+              onChange={(e) => setIcon(e.target.value)}
               required
               fullWidth
               label="Link Type"
@@ -84,10 +102,14 @@ const AddSocialDialog = ({ open, onClose, social }) => {
               ))}
             </Select>
           </Grid>
-
           <Grid item xs={12}>
             <TextField
               value={url}
+              type="url"
+              inputProps={{
+                pattern: "(http|https)://(.)+[.](.)+",
+              }}
+              placeholder="eg.  https://facebook.com/me"
               onChange={(e) => setUrl(e.target.value)}
               required
               fullWidth
@@ -111,4 +133,9 @@ const AddSocialDialog = ({ open, onClose, social }) => {
   );
 };
 
-export default AddSocialDialog;
+const actions = {
+  addSocial,
+  updateSocials,
+};
+
+export default connect(null, actions)(AddSocialDialog);

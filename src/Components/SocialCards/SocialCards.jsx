@@ -5,7 +5,8 @@ import SocialLink from "./../SocialLink/SocialLink";
 import { v4 as uuid } from "uuid";
 import { FiberPinTwoTone } from "@material-ui/icons";
 import AddIcon from "@material-ui/icons/Add";
-import AddSocialDialog from './../AddSocialDialog/AddSocialDialog';
+import AddSocialDialog from "./../AddSocialDialog/AddSocialDialog";
+import { connect } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   addBtn: {
@@ -18,10 +19,10 @@ const useStyles = makeStyles((theme) => ({
     height: 60,
     color: "grey",
   },
-  addContainer:{
-    display:"flex",
-    justifyContent:"center"
-  }
+  addContainer: {
+    display: "flex",
+    justifyContent: "center",
+  },
 }));
 
 const links = [
@@ -57,18 +58,19 @@ const links = [
   {},
 ];
 
-const SocialCards = ({ style, className }) => {
+const SocialCards = ({ style, className, user: { socialLinks } }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
   return (
     <Container maxWidth="lg" style={{ ...style }} className={className}>
       <Grid container spacing={2}>
-        {links.map((item) => (
-          <Grid key={uuid()} item xs={6} sm={4} md={3} className="center">
-            <SocialLink {...item} />
-          </Grid>
-        ))}
+        {socialLinks &&
+          socialLinks.map((item, index) => (
+            <Grid key={uuid()} item xs={6} sm={4} md={3} className="center">
+              <SocialLink {...item} index={index} />
+            </Grid>
+          ))}
         <Grid item xs={6} sm={4} md={3} className={classes.addContainer}>
           <Button
             variant="outlined"
@@ -85,4 +87,8 @@ const SocialCards = ({ style, className }) => {
   );
 };
 
-export default SocialCards;
+const mapState = (store) => ({
+  user: store.user,
+});
+
+export default connect(mapState)(SocialCards);

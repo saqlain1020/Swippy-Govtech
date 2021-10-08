@@ -7,7 +7,7 @@ import loaderReducer from "./loader/loaderReducer";
 
 const persistConfig = {
   key: "root",
-  whitelist: [],
+  whitelist: ["user"],
   storage,
 };
 

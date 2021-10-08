@@ -8,22 +8,44 @@ import {
   TextField,
   Typography,
 } from "@material-ui/core";
+import { connect } from "react-redux";
+import { updateUserInfo } from "src/Redux/user/userActions";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
+  btnsContainer: {
+    // borderTop:"1px solid grey"
+    // boxShadow: "0px -5px 5px rgba(0,0,0,0.1)"
+  },
+  paper: {
+    // padding:0,
+  },
 }));
 
-const ProfileValueDialog = ({ open, onClose }) => {
+const ProfileValueDialog = ({ open, onClose, user, updateUserInfo }) => {
   const classes = useStyles();
-  const [name, setName] = React.useState("");
-  const [description, setDescription] = React.useState("");
+  const [name, setName] = React.useState(user.name || "");
+  const [description, setDescription] = React.useState(user.description || "");
 
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault();
+    let obj = {
+      name,
+      description,
+    };
+    console.log(obj)
+    await updateUserInfo(obj);
+    onClose();
   };
 
   return (
-    <Dialog disableBackdropClick open={open} onClose={onClose} className={classes.root}>
+    <Dialog
+      PaperProps={{ className: classes.paper }}
+      disableBackdropClick
+      open={open}
+      onClose={onClose}
+      className={classes.root}
+    >
       <form onSubmit={submit}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
@@ -49,10 +71,10 @@ const ProfileValueDialog = ({ open, onClose }) => {
               rows={5}
               label="Description"
               value={description}
-              onChange={(e) => setDescription(e.target.value)}
+              onChange={(e) => {setDescription(e.target.value)}}
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} className={classes.btnsContainer}>
             <Typography align="right">
               <Button variant="outlined" color="primary" onClick={onClose}>
                 Cancel
@@ -69,4 +91,12 @@ const ProfileValueDialog = ({ open, onClose }) => {
   );
 };
 
-export default ProfileValueDialog;
+const mapState = (store) => ({
+  user: store.user,
+});
+
+const actions = {
+  updateUserInfo,
+};
+
+export default connect(mapState, actions)(ProfileValueDialog);

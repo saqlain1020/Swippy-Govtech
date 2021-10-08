@@ -7,7 +7,6 @@ import {
   ListItemText,
   makeStyles,
 } from "@material-ui/core";
-import { v4 as uuid } from "uuid";
 import Logo from "src/Assets/images/logo.png";
 import FabTabs from "src/Components/FabTabs/FabTabs";
 import { Link } from "react-router-dom";

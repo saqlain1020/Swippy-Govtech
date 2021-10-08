@@ -21,15 +21,15 @@ const useStyles = makeStyles((theme) => ({
     zIndex:1,
     
     "& .MuiBadge-badge": {
-      padding: 5,
+      padding: 8,
       height: "auto",
       borderRadius: 360,
       "& svg": {
-        width: 50,
-        height: 50,
+        width: 30,
+        height: 30,
       },
       [theme.breakpoints.down("xs")]: {
-        padding: 3,
+        padding: 5,
         "& svg": {
           width: 30,
           height: 30,
