@@ -91,6 +91,12 @@ const theme = createMuiTheme({
         padding: 20,
         borderRadius: 10,
       },
+      elevation24: {
+        // boxShadow: "0px 3px 20px rgba(0,0,0,0.1)",
+        boxShadow: "0px 20px 35px rgb(0 0 61 / 15%)",
+        padding: 20,
+        borderRadius: 10,
+      },
     },
   },
 });
