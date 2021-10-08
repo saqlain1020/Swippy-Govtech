@@ -43,11 +43,12 @@ const ProfileValueDialog = ({ open, onClose, user, updateUserInfo }) => {
       PaperProps={{ className: classes.paper }}
       disableBackdropClick
       open={open}
+      maxWidth="xs"
       onClose={onClose}
       className={classes.root}
     >
       <form onSubmit={submit}>
-        <Grid container spacing={2}>
+        <Grid container spacing={5}>
           <Grid item xs={12}>
             <Typography variant="h5" color="primary">
               <b>Profile Details</b>

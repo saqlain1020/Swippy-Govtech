@@ -8,12 +8,8 @@ import {
   Typography,
 } from "@material-ui/core";
 import MailOutlineRoundedIcon from "@material-ui/icons/MailOutlineRounded";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import VisibilityOffOutlinedIcon from "@material-ui/icons/VisibilityOffOutlined";
-import VisibilityOutlinedIcon from "@material-ui/icons/VisibilityOutlined";
-import { signin } from "../../Redux/user/userActions";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { sendPasswordResetEmail } from "./../../Redux/user/userActions";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,12 +31,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Login = ({ history, signin }) => {
+const Login = ({ history, sendPasswordResetEmail }) => {
   const classes = useStyles();
-  const [show, setShow] = React.useState(false);
   const [state, setState] = React.useState({
     email: "",
-    password: "",
   });
 
   const handleChange = (e) => {
@@ -52,7 +46,7 @@ const Login = ({ history, signin }) => {
 
   const submit = (e) => {
     e.preventDefault();
-    signin(state.email, state.password);
+    sendPasswordResetEmail(state.email);
   };
 
   return (
@@ -74,43 +68,8 @@ const Login = ({ history, signin }) => {
           />
         </Grid>
         <Grid item xs={12}>
-          <TextField
-            fullWidth
-            placeholder="Password"
-            value={state.password}
-            name="password"
-            required
-            onChange={handleChange}
-            type={!show ? "password" : "text"}
-            InputProps={{
-              startAdornment: <LockOutlinedIcon />,
-              endAdornment: !show ? (
-                <VisibilityOffOutlinedIcon
-                  style={{ cursor: "pointer" }}
-                  onClick={() => setShow(true)}
-                />
-              ) : (
-                <VisibilityOutlinedIcon
-                  style={{ cursor: "pointer" }}
-                  onClick={() => setShow(false)}
-                />
-              ),
-            }}
-          />
-          <Link to="/auth/forgot-password">
-            <Typography
-              align="right"
-              variant="h5"
-              color="textSecondary"
-              className={classes.forgot}
-            >
-              Forgot Password?
-            </Typography>
-          </Link>
-        </Grid>
-        <Grid item xs={12}>
           <Button variant="contained" color="primary" fullWidth type="submit">
-            Log in
+            Send Email
           </Button>
         </Grid>
         <Grid item xs={12}>
@@ -119,6 +78,15 @@ const Login = ({ history, signin }) => {
             <Typography style={{ margin: "0px 5px" }}>OR</Typography>
             <Divider />
           </div>
+        </Grid>
+        <Grid item xs={12}>
+          <Button
+            variant="outlined"
+            fullWidth
+            onClick={() => history.push("/auth")}
+          >
+            Log in
+          </Button>
         </Grid>
         <Grid item xs={12}>
           <Button
@@ -135,7 +103,7 @@ const Login = ({ history, signin }) => {
 };
 
 const actions = {
-  signin,
+  sendPasswordResetEmail,
 };
 
 export default connect(null, actions)(Login);

@@ -6,6 +6,7 @@ import { notify } from "reapop";
 import store from "../store";
 import { storage } from "./../../Firebase/Firebase";
 import firebase from "src/Firebase/Firebase";
+import sizeof from "firestore-size";
 
 export const setUser = (user) => {
   return {
@@ -30,6 +31,7 @@ export const getUserData = async (uid) => {
     let query = await firestore.collection("users").doc(uid).get();
     let displayPhoto = await getProfilePhoto(uid);
     let data = query.data();
+    console.log(sizeof(data));
     data.displayPhoto = displayPhoto;
     return data;
   } catch (error) {
@@ -211,6 +213,15 @@ export const changeDirect = () => async (dispatch) => {
       .doc(store.getState().user.uid)
       .update({ direct });
     dispatch(updateUser({ direct }));
+  } catch (error) {
+    dispatch(notify(error.message, "error"));
+  }
+};
+
+export const sendPasswordResetEmail = (email) => async (dispatch) => {
+  try {
+    await auth.sendPasswordResetEmail(email);
+    dispatch(notify("Password reset email sent..", "success"));
   } catch (error) {
     dispatch(notify(error.message, "error"));
   }

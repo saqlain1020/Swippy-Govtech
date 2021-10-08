@@ -6,12 +6,12 @@ const useStyles = makeStyles((theme) => ({
   root: {
     position: "fixed",
     top: "calc(100% - 100px)",
-    left: "calc(50% - 125px)",
+    left: "calc(50vw - 150px)",
     background: "white",
     borderRadius: 360,
     boxShadow: theme.custom.shadow.icon,
     zIndex: 99,
-    width: 250,
+    width: 300,
 
     display: "flex",
     justifyContent: "center",
@@ -58,18 +58,21 @@ const FabTabs = ({ history }) => {
   const handleChange = (v) => {
     v === 0 && history.push("/dashboard/qr");
     v === 1 && history.push("/dashboard/profile");
-    v === 2 && history.push("/dashboard/settings");
+    v === 2 && history.push("/dashboard/tags");
+    v === 3 && history.push("/dashboard/settings");
     setVal(v);
   };
 
   React.useEffect(() => {
     let path = history.location.pathname;
-    if (path.includes("settings")) {
+    if (path.includes("tag")) {
       setVal(2);
     } else if (path.includes("Qr")) {
       setVal(0);
     } else if (path.includes("profile")) {
       setVal(1);
+    } else if (path.includes("setting")) {
+      setVal(3);
     }
   }, [history.location.pathname]);
 
@@ -90,6 +93,12 @@ const FabTabs = ({ history }) => {
       <Fab
         className={val === 2 ? classes.fabActive : classes.fab}
         onClick={() => handleChange(2)}
+      >
+        <i className={`fas fa-tags ${classes.icon}`}></i>
+      </Fab>
+      <Fab
+        className={val === 3 ? classes.fabActive : classes.fab}
+        onClick={() => handleChange(3)}
       >
         <i className={`fas fa-cog ${classes.icon}`}></i>
       </Fab>

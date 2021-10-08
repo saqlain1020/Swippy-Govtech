@@ -116,6 +116,14 @@ const BurgerMenu = ({ children }) => {
                 <ListItemText primary="Dashboard" />
               </ListItem>
             </Link>
+            <Link to="/dashboard/tags">
+              <ListItem button>
+                <ListItemIcon>
+                  <i className="fas fa-tag"></i>
+                </ListItemIcon>
+                <ListItemText primary="My Tags" />
+              </ListItem>
+            </Link>
             <Link to="/dashboard/Qr">
               <ListItem button>
                 <ListItemIcon>

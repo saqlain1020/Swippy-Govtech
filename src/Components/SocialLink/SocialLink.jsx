@@ -79,8 +79,8 @@ const SocialLink = ({ icon, title, url, index, deleteSocial }) => {
     <div>
       <a href={url} className={classes.root}>
         <img
-          width="130px"
-          height="130px"
+          width="150px"
+          height="150px"
           className={classes.img}
           src={src}
           alt="social"

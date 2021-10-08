@@ -8,8 +8,8 @@ import { connect } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   addBtn: {
-    width: 130,
-    height: 130,
+    width: 150,
+    height: 150,
     borderRadius: 40,
   },
   addIco: {

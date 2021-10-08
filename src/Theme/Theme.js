@@ -5,18 +5,20 @@ const theme = createMuiTheme({
     primary: {
       // main: "#0069FB",
       main: "#1C1C1C",
-      
     },
-    secondary:{
+    secondary: {
       main: "#ffffff",
     },
     text: {
       light: "#333333",
       primary: "rgba(0,0,0,0.4)",
+      // primary: "rgba(0,0,0,0.4)",
       // primary: "#1C1C1C",
       // secondary: "#0069fb",
-      secondary: "#020202",
+      secondary: "rgba(0,0,0,0.7)",
+      
     },
+    
   },
   typography: {
     fontFamily: "'Poppins', sans-serif",
@@ -99,14 +101,15 @@ const theme = createMuiTheme({
       },
     },
   },
-  colors:{
+  colors: {
     bg: "#F3F5F9",
   },
-  custom:{
-    shadow:{
-      icon:"0px 10px 25px 0px rgb(0 0 61 / 50%)"
-    }
-  }
+  custom: {
+    shadow: {
+      icon: "0px 10px 25px 0px rgb(0 0 61 / 50%)",
+      paper: "0px 20px 35px rgb(0 0 61 / 15%)",
+    },
+  },
 });
 
 export default theme;

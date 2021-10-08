@@ -84,10 +84,10 @@ const AddSocialDialog = ({
       open={open}
       onClose={onClose}
       className={classes.root}
-      maxWidth="sm"
+      maxWidth="xs"
     >
       <form onSubmit={submit}>
-        <Grid container spacing={2}>
+        <Grid container spacing={5}>
           <Grid item xs={12}>
             <Typography color="primary" variant="h5">
               <b>Add Social</b>

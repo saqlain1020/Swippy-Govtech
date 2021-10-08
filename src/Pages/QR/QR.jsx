@@ -2,11 +2,9 @@ import React from "react";
 import { makeStyles } from "@material-ui/core";
 import QRCode from "react-qr-code";
 import { connect } from "react-redux";
-import {Slide} from '@material-ui/core';
-
+import { Slide } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
-  root: {},
   qrContainer: {
     position: "relative",
     top: -100,
@@ -27,16 +25,15 @@ const QR = ({ user }) => {
 
   React.useEffect(() => {
     const url = `http://${window.location.host}/profile/${user.uid}`;
-    console.log(url);
     setUrl(url);
   }, [user]);
 
   return (
-    <div className={classes.root + " " + "center"}>
-        <Slide direction="up" in={true}>
-      <div className={classes.qrContainer}>
-        <QRCode value={url} size={300} level="Q" />        
-      </div>
+    <div className={"center"}>
+      <Slide direction="up" in={true}>
+        <div className={classes.qrContainer}>
+          <QRCode value={url} size={300} level="Q" />
+        </div>
       </Slide>
     </div>
   );
