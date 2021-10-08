@@ -9,8 +9,8 @@ import AddSocialDialog from './../AddSocialDialog/AddSocialDialog';
 
 const useStyles = makeStyles((theme) => ({
   addBtn: {
-    width: 100,
-    height: 100,
+    width: 130,
+    height: 130,
     borderRadius: 10,
   },
   addIco: {
@@ -18,6 +18,10 @@ const useStyles = makeStyles((theme) => ({
     height: 60,
     color: "grey",
   },
+  addContainer:{
+    display:"flex",
+    justifyContent:"center"
+  }
 }));
 
 const links = [
@@ -65,7 +69,7 @@ const SocialCards = ({ style, className }) => {
             <SocialLink {...item} />
           </Grid>
         ))}
-        <Grid item xs={6} sm={4} md={3} className="center">
+        <Grid item xs={6} sm={4} md={3} className={classes.addContainer}>
           <Button
             variant="outlined"
             color="primary"

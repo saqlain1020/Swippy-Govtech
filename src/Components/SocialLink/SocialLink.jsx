@@ -1,8 +1,8 @@
 import React from "react";
 import { IconButton, makeStyles, Typography } from "@material-ui/core";
 import PropTypes from "prop-types";
-import BorderColorIcon from '@material-ui/icons/BorderColor';
-import DeleteIcon from '@material-ui/icons/Delete';
+import BorderColorIcon from "@material-ui/icons/BorderColor";
+import DeleteIcon from "@material-ui/icons/Delete";
 import LinkIco from "src/Assets/icon/link.png";
 import Instagram from "src/Assets/icon/instagram.png";
 import Snapchat from "src/Assets/icon/snapchat.png";
@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SocialLink = ({ icon, text,url }) => {
+const SocialLink = ({ icon, text, url }) => {
   const classes = useStyles();
   const [src, setSrc] = React.useState(Link);
 
@@ -69,20 +69,20 @@ const SocialLink = ({ icon, text,url }) => {
 
   return (
     <div>
-    <a href={url} className={classes.root}>
-      <img width="130px" height="130px" className={classes.img} src={src} />
-      <Typography variant="h6" align="center" className={classes.text}>
-        <b>{text}</b>
-      </Typography>      
-    </a>
-    <div className="center">
-    <IconButton size="small">
-    <BorderColorIcon/>
-    </IconButton>
-    <IconButton size="small">
-    <DeleteIcon/>
-    </IconButton>
-    </div>
+      <a href={url} className={classes.root}>
+        <img width="130px" height="130px" className={classes.img} src={src} />
+        <Typography variant="h6" align="center" className={classes.text}>
+          <b>{text}</b>
+        </Typography>
+      </a>
+      <div className="center">
+        <IconButton size="small">
+          <BorderColorIcon />
+        </IconButton>
+        <IconButton size="small">
+          <DeleteIcon />
+        </IconButton>
+      </div>
     </div>
   );
 };
