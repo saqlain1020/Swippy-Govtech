@@ -108,7 +108,7 @@ const BurgerMenu = ({ children }) => {
                 <ListItemText primary="Home" />
               </ListItem>
             </Link>
-            <Link to="/dashboard">
+            <Link to="/dashboard/profile">
               <ListItem button>
                 <ListItemIcon>
                   <i className="fas fa-th-large"></i>

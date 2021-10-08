@@ -66,12 +66,12 @@ const FabTabs = ({ history }) => {
     let path = history.location.pathname;
     if (path.includes("settings")) {
       setVal(2);
-    } else if (path.includes("qr")) {
+    } else if (path.includes("Qr")) {
       setVal(0);
     } else if (path.includes("profile")) {
       setVal(1);
     }
-  }, [history]);
+  }, [history.location.pathname]);
 
   return (
     <div className={classes.root}>
