@@ -2,7 +2,7 @@ import { auth, serverTimestamp } from "../../Firebase/Firebase";
 import { firestore } from "./../../Firebase/Firebase";
 import { SET_USER } from "./authConstants";
 import history from "src/Routes/history";
-import { notify } from 'reapop';
+import { notify } from "reapop";
 import { LOADER_START, LOADER_STOP } from "../loader/loaderConstants";
 
 const getUserData = async (uid) => {
@@ -36,10 +36,7 @@ export const setUser = (user) => {
   };
 };
 
-export const signup = (email, pass) => async (dispatch) => {
-  dispatch({
-    type: LOADER_START
-  })
+export const signup = (name, email, pass) => async (dispatch) => {
   try {
     let user = await auth.createUserWithEmailAndPassword(email, pass);
     let {
@@ -48,7 +45,7 @@ export const signup = (email, pass) => async (dispatch) => {
     let obj = {
       uid,
       email,
-      name: email.split("@")[0],
+      name,
       createdAt: serverTimestamp,
     };
     await firestore.collection("users").doc(uid).set(obj);
@@ -57,9 +54,6 @@ export const signup = (email, pass) => async (dispatch) => {
   } catch (error) {
     dispatch(notify(error.message, "error"));
   }
-  dispatch({
-    type: LOADER_STOP
-  })
 };
 
 export const authListener = () => async (dispatch) => {

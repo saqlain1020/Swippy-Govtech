@@ -18,7 +18,7 @@ import { Link } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   root: {},
   img: {
-    borderRadius: 10,
+    borderRadius: 40,
     overflow: "hidden",
     boxShadow: theme.custom.shadow.icon,
   },

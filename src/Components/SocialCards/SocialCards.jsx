@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
   addBtn: {
     width: 130,
     height: 130,
-    borderRadius: 10,
+    borderRadius: 40,
   },
   addIco: {
     width: 60,

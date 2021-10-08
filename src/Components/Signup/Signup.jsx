@@ -1,7 +1,6 @@
 import React from "react";
 import {
   Button,
-  CircularProgress,
   Divider,
   Grid,
   makeStyles,
@@ -42,6 +41,7 @@ const Signup = ({ history, signup }) => {
   const [state, setState] = React.useState({
     email: "",
     password: "",
+    name: "",
   });
 
   const handleChange = (e) => {
@@ -53,7 +53,7 @@ const Signup = ({ history, signup }) => {
 
   const submit = (e) => {
     e.preventDefault();
-    signup(state.email, state.password);
+    signup(state.name, state.email, state.password);
   };
 
   return (
@@ -123,7 +123,6 @@ const Signup = ({ history, signup }) => {
         <Grid item xs={12}>
           <Button variant="contained" color="primary" fullWidth type="submit">
             Sign up
-            <CircularProgress color="secondary" />
           </Button>
         </Grid>
         <Grid item xs={12}>
