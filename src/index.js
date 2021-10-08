@@ -4,16 +4,18 @@ import "./index.css";
 import App from "./App";
 import { Router } from "react-router-dom";
 import history from "./Routes/history";
-import store,{ persistor } from './Redux/store';
+import store, { persistor } from "./Redux/store";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
+import ToastrComponent from "./Components/ToastrComponent/ToastrComponent";
 
 ReactDOM.render(
   <React.StrictMode>
     <Router history={history}>
       <Provider store={store}>
         <PersistGate persistor={persistor}>
-            <App />
+          <ToastrComponent/>
+          <App />
         </PersistGate>
       </Provider>
     </Router>
