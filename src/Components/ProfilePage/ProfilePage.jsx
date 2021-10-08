@@ -1,5 +1,5 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core";
+import { makeStyles, Typography } from "@material-ui/core";
 import ProfileHeadingCard from "src/Components/ProfileHeadingCard/ProfileHeadingCard";
 import SocialCards from "src/Components/SocialCards/SocialCards";
 import Logo from "src/Assets/images/logo.png";
@@ -28,6 +28,29 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     top: -50,
   },
+  buyBtn:{
+      position:"fixed",
+      width:"90%",
+      left:"5%",
+      borderRadius:360,
+      height:50,
+      bottom:10,
+      color:"white",
+      display:"flex",
+      alignItems:"center",
+    justifyContent:"center",
+      background: "#25CCF7",
+      boxShadow: "0px 0px 0px 50px rgba(37, 204, 247,0.3)",
+      animation: "$buyBtn 2s infinite ease-in-out",
+  },
+  "@keyframes buyBtn":{
+      "0%":{
+        boxShadow: "0px 0px 0px 0px rgba(37, 204, 247,0.5)"
+      },
+      "100%":{
+        boxShadow: "0px 0px 10px 40px rgba(37, 204, 247,0)"
+      }
+  }
 }));
 
 const ProfilePage = ({
@@ -68,6 +91,11 @@ const ProfilePage = ({
       <div className={classes.content}>
         <ProfileHeadingCard data={data} />
         <SocialCards data={data} style={{ marginTop: 30 }} />
+      </div>
+      <div className={classes.buyBtn}>
+    <Typography align="center" style={{color:"white"}}>
+    <i className="fas fa-cart-plus"></i>&nbsp;&nbsp;Buy Swopi Now!!
+    </Typography>
       </div>
     </div>
   );
