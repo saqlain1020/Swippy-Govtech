@@ -13,9 +13,7 @@ import {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    // background: theme.colors.bg,
     position: "relative",
-    // top: -50,
   },
   nav: {
     background: theme.palette.primary.main,
@@ -28,29 +26,29 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     top: -50,
   },
-  buyBtn:{
-      position:"fixed",
-      width:"90%",
-      left:"5%",
-      borderRadius:360,
-      height:50,
-      bottom:10,
-      color:"white",
-      display:"flex",
-      alignItems:"center",
-    justifyContent:"center",
-      background: "#25CCF7",
-      boxShadow: "0px 0px 0px 50px rgba(37, 204, 247,0.3)",
-      animation: "$buyBtn 2s infinite ease-in-out",
+  buyBtn: {
+    position: "fixed",
+    width: "90%",
+    left: "5%",
+    borderRadius: 360,
+    height: 50,
+    bottom: 10,
+    color: "white",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundImage:
+      "linear-gradient(to right, #051937, #004d7a, #008793, #00bf72, #a8eb12)",
+    backgroundSize: "200% 200%",
+    boxShadow: theme.custom.shadow.icon,
+    cursor: "pointer",
+    animation: "$buyBtn 10s infinite ease",
   },
-  "@keyframes buyBtn":{
-      "0%":{
-        boxShadow: "0px 0px 0px 0px rgba(37, 204, 247,0.5)"
-      },
-      "100%":{
-        boxShadow: "0px 0px 10px 40px rgba(37, 204, 247,0)"
-      }
-  }
+  "@keyframes buyBtn": {
+    "0%": { backgroundPosition: "0% 50%" },
+    "50%": { backgroundPosition: "100% 50%" },
+    "100%": { backgroundPosition: "0% 50%" },
+  },
 }));
 
 const ProfilePage = ({
@@ -93,9 +91,9 @@ const ProfilePage = ({
         <SocialCards data={data} style={{ marginTop: 30 }} />
       </div>
       <div className={classes.buyBtn}>
-    <Typography align="center" style={{color:"white"}}>
-    <i className="fas fa-cart-plus"></i>&nbsp;&nbsp;Buy Swopi Now!!
-    </Typography>
+        <Typography align="center" style={{ color: "white" }}>
+          <i className="fas fa-cart-plus"></i>&nbsp;&nbsp;Buy Swopi Now!!
+        </Typography>
       </div>
     </div>
   );
