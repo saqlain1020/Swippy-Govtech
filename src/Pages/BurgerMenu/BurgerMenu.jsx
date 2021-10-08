@@ -1,9 +1,9 @@
 import React from "react";
 import { elastic as Menu } from "react-burger-menu";
-import { List, ListItem,  makeStyles } from "@material-ui/core";
-import {v4 as uuid} from 'uuid';
+import { List, ListItem, makeStyles } from "@material-ui/core";
+import { v4 as uuid } from "uuid";
 import Logo from "src/Assets/images/logo.png";
-
+import FabTabs from "src/Components/FabTabs/FabTabs";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -11,21 +11,23 @@ const useStyles = makeStyles((theme) => ({
     //   background: "red",
     // position:"relative"
   },
-  nav:{
+  nav: {
     background: theme.palette.primary.main,
-    paddingLeft:100,
-    height:60,
-    paddingTop:5,
-    paddingBottom:5,
-}
+    // paddingLeft: 100,
+    height: "250px",
+    paddingTop: 5,
+    display:"flex"    ,
+    justifyContent:"center",
+    paddingBottom: 5,
+  },
 }));
 var styles = {
   bmBurgerButton: {
     position: "relative",
-    width: "25px",
-    height: "20px",
+    width: "20px",
+    height: "15px",
     left: "20px",
-    top: "20px",    
+    top: "20px",
   },
   bmBurgerBars: {
     background: "white",
@@ -88,9 +90,12 @@ const BurgerMenu = ({ items = [], children }) => {
         ))}
       </Menu>
       <main id="page-wrap">
-      <div className={classes.nav}><img src={Logo} alt="swippy" height="100%"/></div>
+        <FabTabs/>
+        <div className={classes.nav}>
+          <img src={Logo} alt="swippy" height="50px" />
+        </div>
         {children}
-        </main>
+      </main>
     </div>
   );
 };

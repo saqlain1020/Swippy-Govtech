@@ -2,40 +2,53 @@ import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   profileTop: {
-    display: "flex",
-    justifyContent: "center",
+    // display: "flex",
+    // justifyContent: "center",
+    paddingTop:130,
     [theme.breakpoints.down("xs")]: {
-      justifyContent: "flex-start",
+      paddingTop:70,
+      // justifyContent: "flex-start",
     },
   },
   avatarBadge: {
-    width: "100px",
-    height: "100px",
-    marginRight: 30,
+
+    width: "200px",
+    height: "200px",
+    
+    position:"absolute",
+    top:"-100px",
+    left: "calc(50% - 100px)",
+    zIndex:1,
+    
     "& .MuiBadge-badge": {
       padding: 5,
       height: "auto",
       borderRadius: 360,
+      "& svg": {
+        width: 50,
+        height: 50,
+      },
       [theme.breakpoints.down("xs")]: {
         padding: 3,
         "& svg": {
-          width: 15,
-          height: 15,
+          width: 30,
+          height: 30,
         },
       },
     },
     [theme.breakpoints.down("xs")]: {
-      width: "60px",
-      height: "60px",
+      left: "calc(50% - 75px)",
+      width: "150px",
+      height: "150px",
     },
   },
   avatar: {
-    width: "100px",
-    height: "100px",
+    width: "200px",
+    height: "200px",
     // marginRight: 30,
     [theme.breakpoints.down("xs")]: {
-      width: "60px",
-      height: "60px",
+      width: "150px",
+      height: "150px",
     },
   },
   heading: {
@@ -45,18 +58,19 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   description: {
+    maxWidth:350,
+    margin:"auto",
     [theme.breakpoints.down("xs")]: {
       fontSize: 13,
     },
   },
   directBtn: {
-    width: 300,
-    margin: "auto",
-    marginTop: 20,
+    maxWidth:250,
+    // margin:"auto",
   },
   editIco: {
-    width: 20,
-    height: 20,
+    // width: 20,
+    // height: 20,
     overflow: "hidden",
     cursor: "pointer",
   },

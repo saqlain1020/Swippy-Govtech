@@ -4,7 +4,12 @@ import ProfileHeadingCard from "src/Components/ProfileHeadingCard/ProfileHeading
 import SocialCards from "src/Components/SocialCards/SocialCards";
 
 const useStyles = makeStyles((theme) => ({
-  root: {},
+  root: {
+    background: theme.colors.bg,
+    position:"relative",
+    top:-50,
+    borderRadius:50,
+  },
   nav: {
     background: theme.palette.primary.main,
   },
@@ -16,10 +21,8 @@ const Profile = () => {
 
   return (
     <div className={classes.root}>
-      <Container maxWidth="lg">
-        <ProfileHeadingCard style={{marginTop:20}} />
+        <ProfileHeadingCard/>
         <SocialCards style={{marginTop:30}}/>
-      </Container>
     </div>
   );
 };

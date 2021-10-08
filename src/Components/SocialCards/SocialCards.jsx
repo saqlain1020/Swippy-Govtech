@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Grid, makeStyles } from "@material-ui/core";
+import { Button, Container, Grid, makeStyles } from "@material-ui/core";
 import { Paper } from "@material-ui/core";
 import SocialLink from "./../SocialLink/SocialLink";
 import { v4 as uuid } from "uuid";
@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
   addBtn: {
     width: 100,
     height: 100,
-    borderRadius: 30,
+    borderRadius: 10,
   },
   addIco: {
     width: 60,
@@ -45,6 +45,10 @@ const links = [
     icon: "facebook",
     text: "My Facebook",
   },
+  {
+    icon: "twitter",
+    text: "My Facebook",
+  },
   {},
   {},
 ];
@@ -54,8 +58,8 @@ const SocialCards = ({ style, className }) => {
   const [open, setOpen] = React.useState(false);
 
   return (
-    <Paper style={{ ...style }} className={className}>
-      <Grid container spacing={4}>
+    <Container maxWidth="lg" style={{ ...style }} className={className}>
+      <Grid container spacing={2}>
         {links.map((item) => (
           <Grid key={uuid()} item xs={6} sm={4} md={3} className="center">
             <SocialLink {...item} />
@@ -73,7 +77,7 @@ const SocialCards = ({ style, className }) => {
         </Grid>
       </Grid>
       <AddSocialDialog open={open} onClose={() => setOpen(false)} />
-    </Paper>
+    </Container>
   );
 };
 

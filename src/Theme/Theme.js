@@ -4,7 +4,7 @@ const theme = createMuiTheme({
   palette: {
     primary: {
       // main: "#0069FB",
-      main: "#020202",
+      main: "#1C1C1C",
       
     },
     secondary:{
@@ -13,7 +13,7 @@ const theme = createMuiTheme({
     text: {
       light: "#333333",
       primary: "rgba(0,0,0,0.4)",
-      // primary: "rgba(0,0,0,0.4)",
+      // primary: "#1C1C1C",
       // secondary: "#0069fb",
       secondary: "#020202",
     },
@@ -98,6 +98,9 @@ const theme = createMuiTheme({
         borderRadius: 10,
       },
     },
+  },
+  colors:{
+    bg: "#F3F5F9",
   },
   custom:{
     shadow:{

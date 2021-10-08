@@ -3,6 +3,8 @@ import {
   Avatar,
   Badge,
   Button,
+  Container,
+  Grid,
   IconButton,
   makeStyles,
   Paper,
@@ -25,7 +27,6 @@ const ProfileHeadingCard = ({
   const [open, setOpen] = React.useState(false);
   const inputRef = React.createRef();
 
-
   const fileInputChange = async ({ target: { files } }) => {
     // let arr = [];
     // const sizeLimit = 3000000;
@@ -47,65 +48,77 @@ const ProfileHeadingCard = ({
     //     toastr.error("", "File size is too large. Please resize and try again");
     //   }
     // }
-   
-   
   };
 
-
-  React.useEffect(()=>{
+  React.useEffect(() => {
     inputRef.current.onchange = fileInputChange;
-
-  },[inputRef])
+  }, [inputRef]);
 
   return (
-    <Paper style={{ ...style }} className={className}>
+    <Container maxWidth="lg" style={{ position: "relative", ...style }} className={className}>
+      {/* <center> */}
+      <Badge
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "right",
+        }}
+        className={classes.avatarBadge}
+        overlap="circle"
+        badgeContent={
+          <EditIcon
+            onClick={() => inputRef.current.click()}
+            className={classes.editIco}
+          />
+        }
+        color="primary"
+      >
+        <Avatar className={classes.avatar} src={imgSrc} />
+      </Badge>
+      {/* </center> */}
       <div className={classes.profileTop}>
-        <Badge
-          anchorOrigin={{
-            vertical: "bottom",
-            horizontal: "right",
-          }}
-          className={classes.avatarBadge}
-          overlap="circle"
-          badgeContent={
-            <EditIcon
-              onClick={() => inputRef.current.click()}
-              className={classes.editIco}
-            />
-          }
-          color="primary"
-        >
-          <Avatar className={classes.avatar} src={imgSrc} />
-        </Badge>
-        <div style={{ display: "flex", flexFlow: "column" }}>
-          <Typography variant="h4" className={classes.heading}>
-            {name}
-            <IconButton size="small" onClick={() => setOpen(true)}>
-              <EditIcon className={classes.icon} />
-            </IconButton>
-          </Typography>
+        <Typography variant="h4" align="center" className={classes.heading}>
+          {name}
+        </Typography>
 
-          <Typography className={classes.description}>
-            {description}
-            {/* <IconButton size="small">
-              <EditIcon className={classes.icon} />
-            </IconButton> */}
-          </Typography>
-        </div>
+        <Typography align="center" className={classes.description}>
+          {description}
+        </Typography>
       </div>
-      <center>
-        <Button
-          variant="contained"
-          color="primary"
-          className={classes.directBtn}
-          onClick={directFn}
-        >
-          Direct Off
-        </Button>
-      </center>
+      <Grid container spacing={2} style={{ padding: 20 }}>
+        <Grid item xs={6}>
+          <Typography align="right">
+            <Button
+              variant="contained"
+              color="primary"
+              fullWidth
+              className={classes.directBtn}
+              onClick={directFn}
+            >
+              Direct Off
+            </Button>
+          </Typography>
+        </Grid>
+        <Grid item xs={6}>
+          <Button
+            variant="contained"
+            color="primary"
+            fullWidth
+            className={classes.directBtn}
+            onClick={() => setOpen(true)}
+          >
+            Edit Profile
+          </Button>
+        </Grid>
+      </Grid>
+
       <ProfileValueDialog open={open} onClose={() => setOpen(false)} />
-      <input style={{ display: "none" }} type="file" accept="image/*" ref={inputRef} />
-    </Paper>
+      <input
+        style={{ display: "none" }}
+        type="file"
+        accept="image/*"
+        ref={inputRef}
+      />
+    </Container>
   );
 };
 
