@@ -57,6 +57,23 @@ const theme = createMuiTheme({
       },
       
     },
+    MuiCircularProgress:{
+      root:{
+        color: "white",
+        width:25,
+        height:25,
+      },
+      colorPrimary:{
+        width:"25px !important",
+        height:"25px !important",
+      },
+      colorSecondary:{
+        color: "white",
+        width:"25px !important",
+        height:"25px !important",
+      }
+
+    }
   },
 });
 

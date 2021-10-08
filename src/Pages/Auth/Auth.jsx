@@ -4,6 +4,8 @@ import clsx from 'clsx';
 import ImgSrc from 'src/Assets/images/login-bg.png'
 import Logo from 'src/Assets/images/logo.png'
 import Login from 'src/Components/Login/Login';
+import Signup from 'src/Components/Signup/Signup';
+import { Route } from 'react-router';
 
 const useStyles = makeStyles((theme)=>({
     root:{
@@ -74,6 +76,7 @@ const useStyles = makeStyles((theme)=>({
 const Auth = () => {
     const classes = useStyles();
     
+
     return (
         <div className={clsx(classes.root,"center")}>
             <div className={classes.container}>
@@ -81,7 +84,8 @@ const Auth = () => {
                     <img src={Logo} className={classes.logo}/>
                 
                 <div>
-                    <Login/>
+                    <Route path="/auth" component={Login} exact/>
+                    <Route path="/auth/signup" component={Signup} exact />
                 </div>
             </div>
         </div>
