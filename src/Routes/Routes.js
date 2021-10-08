@@ -7,6 +7,7 @@ import UserRoutes from "./UserRoutes";
 import Signout from "./../Components/Signout/Signout";
 import history from "./history";
 import ProfilePage from "src/Components/ProfilePage/ProfilePage";
+import TagSerial from "src/Pages/TagSerial/TagSerial";
 
 const Routes = () => {
   return (
@@ -15,6 +16,7 @@ const Routes = () => {
       <AuthenticatedRoute path="/profile/:uid" component={ProfilePage} exact />
       <Route path={"/test"} component={Test} />
       <Route path={"/auth"} component={Auth} />
+      <Route path={"/tag/:serial"} component={TagSerial} exact />
       <AuthenticatedRoute
         path={"/dashboard"}
         render={(props) => <UserRoutes />}
