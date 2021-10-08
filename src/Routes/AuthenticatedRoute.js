@@ -8,7 +8,7 @@ import { Route } from "react-router";
 const AuthenticatedRoute = ({ auth, ...props }) => {
   const dispatch = useDispatch();
 
-  if (!auth.uid && process.env.NODE_ENV !== "production") {
+  if (!auth.uid) {
     dispatch(notify("Not Authenticated.", "warning"));
     history.push("/auth");
   }
