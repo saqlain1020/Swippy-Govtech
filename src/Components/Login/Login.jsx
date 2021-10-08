@@ -11,6 +11,9 @@ import MailOutlineRoundedIcon from "@material-ui/icons/MailOutlineRounded";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import VisibilityOffOutlinedIcon from "@material-ui/icons/VisibilityOffOutlined";
 import VisibilityOutlinedIcon from "@material-ui/icons/VisibilityOutlined";
+import { signin } from "./../../Redux/auth/authActions";
+import { connect } from 'react-redux';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     padding: 20,
@@ -31,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Login = ({ history }) => {
+const Login = ({ history, signin }) => {
   const classes = useStyles();
   const [show, setShow] = React.useState(false);
   const [state, setState] = React.useState({
@@ -48,7 +51,7 @@ const Login = ({ history }) => {
 
   const submit = (e) => {
     e.preventDefault();
-    history.push("/dashboard/profile")
+    signin(state.email, state.password);
   };
 
   return (
@@ -128,4 +131,8 @@ const Login = ({ history }) => {
   );
 };
 
-export default Login;
+const actions = {
+  signin,
+};
+
+export default connect(null,actions)(Login);

@@ -13,6 +13,8 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import VisibilityOffOutlinedIcon from "@material-ui/icons/VisibilityOffOutlined";
 import VisibilityOutlinedIcon from "@material-ui/icons/VisibilityOutlined";
 import FaceIcon from "@material-ui/icons/Face";
+import { connect } from "react-redux";
+import { signup } from "./../../Redux/auth/authActions";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,12 +36,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Login = ({ history }) => {
+const Signup = ({ history, signup }) => {
   const classes = useStyles();
   const [show, setShow] = React.useState(false);
   const [state, setState] = React.useState({
     email: "",
-    name: "",
     password: "",
   });
 
@@ -52,6 +53,7 @@ const Login = ({ history }) => {
 
   const submit = (e) => {
     e.preventDefault();
+    signup(state.email, state.password);
   };
 
   return (
@@ -145,4 +147,8 @@ const Login = ({ history }) => {
   );
 };
 
-export default Login;
+const actions = {
+  signup,
+};
+
+export default connect(null, actions)(Signup);

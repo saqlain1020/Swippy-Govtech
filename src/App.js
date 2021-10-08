@@ -1,10 +1,14 @@
+import React from "react";
 import "./App.css";
 import { setUpNotifications } from "reapop";
 import { Container, ThemeProvider } from "@material-ui/core";
 import theme from "./Theme/Theme";
 import Routes from "./Routes/Routes";
+import { connect } from "react-redux";
+import { authListener } from "src/Redux/auth/authActions";
+import Loading from "./Components/Loading/Loading";
 
-function App() {
+function App({ authListener }) {
   setUpNotifications({
     defaultProps: {
       position: "top-right",
@@ -14,10 +18,15 @@ function App() {
     },
   });
 
+  React.useEffect(() => {
+    authListener();
+  }, [authListener]);
+
   return (
     <>
       <ThemeProvider theme={theme}>
         <Container maxWidth="xl" disableGutters>
+          <Loading/>
           <Routes />
         </Container>
       </ThemeProvider>
@@ -25,4 +34,8 @@ function App() {
   );
 }
 
-export default App;
+const actions = {
+  authListener,
+};
+
+export default connect(null, actions)(App);
