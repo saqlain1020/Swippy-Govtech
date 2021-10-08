@@ -3,7 +3,10 @@ import {
   Button,
   Dialog,
   Divider,
+  FormControl,
+  FormControlLabel,
   Grid,
+  InputLabel,
   makeStyles,
   MenuItem,
   Select,
@@ -13,6 +16,7 @@ import {
 import { v4 as uuid } from "uuid";
 import { connect } from "react-redux";
 import { addSocial, updateSocials } from "src/Redux/user/userActions";
+import { userNameToUrl } from "./../../Util/socialFunctions";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -61,6 +65,19 @@ const AddSocialDialog = ({
     onClose();
   };
 
+  const handleSelect = (e) => {
+    setIcon(e.target.value);
+    if (title === "") setTitle(e.target.value);
+    urlFocusOut();
+  };
+
+  const urlFocusOut = () => {
+    if (!url.includes("http")) {
+      let link = userNameToUrl(url, icon);
+      setUrl(link);
+    }
+  };
+
   return (
     <Dialog
       disableBackdropClick
@@ -78,6 +95,25 @@ const AddSocialDialog = ({
             <Divider />
           </Grid>
           <Grid item xs={12}>
+            <FormControl fullWidth>
+              <InputLabel>Social Media*</InputLabel>
+              <Select
+                value={icon}
+                onChange={handleSelect}
+                required
+                fullWidth
+                label="Link Type"
+                labelWidth={200}
+              >
+                {socials.map((item) => (
+                  <MenuItem key={uuid()} value={item}>
+                    {item}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={12}>
             <TextField
               value={title}
               onChange={(e) => setTitle(e.target.value)}
@@ -87,33 +123,20 @@ const AddSocialDialog = ({
             />
           </Grid>
           <Grid item xs={12}>
-            <Select
-              value={icon}
-              onChange={(e) => setIcon(e.target.value)}
-              required
-              fullWidth
-              label="Link Type"
-              labelWidth={200}
-            >
-              {socials.map((item) => (
-                <MenuItem key={uuid()} value={item}>
-                  {item}
-                </MenuItem>
-              ))}
-            </Select>
-          </Grid>
-          <Grid item xs={12}>
             <TextField
               value={url}
-              type="url"
-              inputProps={{
-                pattern: "(http|https)://(.)+[.](.)+",
-              }}
+              type="text"
+              inputProps={
+                {
+                  // pattern: "(http|https)://(.)+[.](.)+",
+                }
+              }
               placeholder="eg.  https://facebook.com/me"
               onChange={(e) => setUrl(e.target.value)}
               required
               fullWidth
-              label="URL"
+              onBlur={urlFocusOut}
+              label="Username"
             />
           </Grid>
           <Grid item xs={12}>
