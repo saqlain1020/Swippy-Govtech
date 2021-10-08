@@ -1,16 +1,9 @@
 import React from "react";
-import { CircularProgress, makeStyles } from "@material-ui/core";
+import { CircularProgress } from "@material-ui/core";
 import { connect } from "react-redux";
-import { signout } from './../../Redux/user/userActions';
+import { signout } from "./../../Redux/user/userActions";
 
-const useStyles = makeStyles((theme) => ({
-  root: {},
-}));
-
-const Signout = ({signout}) => {
-  const classes = useStyles();
-
-  console.log("asd")
+const Signout = ({ signout }) => {
   React.useEffect(() => {
     signout();
   }, []);
@@ -23,7 +16,7 @@ const Signout = ({signout}) => {
 };
 
 const actions = {
-    signout
+  signout,
 };
 
 export default connect(null, actions)(Signout);

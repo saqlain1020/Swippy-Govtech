@@ -1,9 +1,7 @@
 import React from "react";
 import { Button, Container, Grid, makeStyles } from "@material-ui/core";
-import { Paper } from "@material-ui/core";
 import SocialLink from "./../SocialLink/SocialLink";
 import { v4 as uuid } from "uuid";
-import { FiberPinTwoTone } from "@material-ui/icons";
 import AddIcon from "@material-ui/icons/Add";
 import AddSocialDialog from "./../AddSocialDialog/AddSocialDialog";
 import { connect } from "react-redux";
@@ -24,39 +22,6 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
   },
 }));
-
-const links = [
-  {
-    icon: "facebook",
-    title: "My Facebook",
-  },
-  {
-    icon: "instagram",
-    title: "My Insta",
-  },
-  {
-    icon: "snapchat",
-    title: "Mr moodle",
-  },
-  {
-    icon: "whatsapp",
-    title: "Personal num",
-  },
-  {
-    icon: "message",
-    title: "Message me",
-  },
-  {
-    icon: "facebook",
-    title: "My Facebook",
-  },
-  {
-    icon: "twitter",
-    text: "My Facebook",
-  },
-  {},
-  {},
-];
 
 const SocialCards = ({ style, className, user: { socialLinks } }) => {
   const classes = useStyles();

@@ -20,7 +20,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   fab: {
-    background: theme.palette.primary.main,
     background: "white",
     boxShadow: "none",
     height: 50,
@@ -35,7 +34,6 @@ const useStyles = makeStyles((theme) => ({
     background: theme.palette.primary.main,
     transition: "all 500ms",
     boxShadow: "none",
-    transform: "scale(1.1)",
     height: 50,
     transform: "scale(1.5)",
     width: 50,
@@ -56,7 +54,6 @@ const useStyles = makeStyles((theme) => ({
 
 const FabTabs = ({ history }) => {
   const classes = useStyles();
-  console.log(history.location.pathname);
   const [val, setVal] = React.useState(0);
   const handleChange = (v) => {
     v === 0 && history.push("/dashboard/qr");

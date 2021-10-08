@@ -77,12 +77,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Auth = (user) => {
+const Auth = ({ user }) => {
   const classes = useStyles();
 
   React.useEffect(() => {
     if (user.uid) history.push("/dashboard/profile");
-  }, []);
+  }, [user]);
 
   return (
     <div className={clsx(classes.root, "center")}>
