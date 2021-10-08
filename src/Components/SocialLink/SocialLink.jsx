@@ -16,7 +16,9 @@ import Facebook from "src/Assets/icon/facebook.png";
 import { Link } from "react-router-dom";
 import AddSocialDialog from "./../AddSocialDialog/AddSocialDialog";
 import { connect } from "react-redux";
-import { deleteSocial } from "src/Redux/user/userActions";
+import { deleteSocial,changePrimary } from "src/Redux/user/userActions";
+import StarBorderIcon from '@material-ui/icons/StarBorder';
+import StarIcon from '@material-ui/icons/Star';
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -29,10 +31,15 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 16,
     color: "black",
     fontWeight: 600,
+    marginTop: 10,
   },
+  activeIcon:{
+    color :"#ff8400",
+    transform: "scale(1.1)"
+  }
 }));
 
-const SocialLink = ({ icon, title, url, index, deleteSocial }) => {
+const SocialLink = ({ icon, title, url, isPrimary, index, deleteSocial,changePrimary }) => {
   const classes = useStyles();
   const [src, setSrc] = React.useState(Link);
   const [open, setOpen] = React.useState(false);
@@ -85,12 +92,22 @@ const SocialLink = ({ icon, title, url, index, deleteSocial }) => {
           src={src}
           alt="social"
         />
-        <Typography variant="h6" align="center" className={classes.text}>
+        <Typography align="center" className={classes.text}>
           <b>{title}</b>
         </Typography>
       </a>
       {index !== undefined && (
         <div className="center">
+          {isPrimary && (
+            <IconButton size="small" className={classes.activeIcon}>
+              <StarIcon />
+            </IconButton>
+          )}
+          {!isPrimary && (
+            <IconButton size="small" onClick={() => changePrimary(index)}>
+              <StarBorderIcon />
+            </IconButton>
+          )}
           <IconButton size="small" onClick={() => setOpen(true)}>
             <BorderColorIcon />
           </IconButton>
@@ -112,6 +129,7 @@ const SocialLink = ({ icon, title, url, index, deleteSocial }) => {
 
 const actions = {
   deleteSocial,
+  changePrimary,
 };
 
 export default connect(null, actions)(SocialLink);

@@ -227,3 +227,36 @@ export const sendPasswordResetEmail = (email) => async (dispatch) => {
   }
 };
 
+export const changePrimary = (index) => async (dispatch) => {
+  try {
+    let arr = store.getState().user.socialLinks;
+    arr = arr.map((item, ind) => {
+      if (ind === index) item.isPrimary = true;
+      else item.isPrimary = false;
+      return item;
+    });
+    await firestore
+      .collection("users")
+      .doc(store.getState().user.uid)
+      .update({ socialLinks: arr });
+
+    dispatch(updateUser({ socialLinks: arr }));
+  } catch (error) {
+    dispatch(notify(error.message, "error"));
+  }
+};
+
+export const deleteTag = (serial) => async (dispatch) => {
+  try {
+    let arr = store.getState().user.tags;
+    arr = arr.filter((item) => item !== serial);
+    await firestore
+      .collection("users")
+      .doc(store.getState().user.uid)
+      .update({ tags: arr });
+
+    dispatch(updateUser({ tags: arr }));
+  } catch (error) {
+    dispatch(notify(error.message, "error"));
+  }
+};

@@ -92,7 +92,7 @@ const ProfilePage = ({
       </div>
       <div className={classes.buyBtn}>
         <Typography align="center" style={{ color: "white" }}>
-          <i className="fas fa-cart-plus"></i>&nbsp;&nbsp;Buy Swopi Now!!
+          <i className="fas fa-cart-plus"></i>&nbsp;&nbsp;Tap to get your swippy
         </Typography>
       </div>
     </div>

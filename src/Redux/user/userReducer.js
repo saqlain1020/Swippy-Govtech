@@ -1,6 +1,7 @@
 import { SET_USER, UPDATE_USER } from "./userConstants";
 let initialState = {
-  socialLinks:[]
+  socialLinks:[],
+  tags: []
 };
 
 const userReducer = (state = initialState, action) => {
