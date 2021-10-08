@@ -6,12 +6,12 @@ const useStyles = makeStyles((theme) => ({
   root: {
     position: "fixed",
     top: "calc(100% - 100px)",
-    left: "calc(50vw - 150px)",
+    left: "calc(50vw - 120px)",
     background: "white",
     borderRadius: 360,
     boxShadow: theme.custom.shadow.icon,
     zIndex: 99,
-    width: 300,
+    width: 240,
 
     display: "flex",
     justifyContent: "center",
@@ -22,8 +22,8 @@ const useStyles = makeStyles((theme) => ({
   fab: {
     background: "white",
     boxShadow: "none",
-    height: 50,
-    width: 50,
+    height: 45,
+    width: 45,
     margin: "0px 10px",
     transition: "all 500ms",
     "&:hover": {
@@ -34,9 +34,9 @@ const useStyles = makeStyles((theme) => ({
     background: theme.palette.primary.main,
     transition: "all 500ms",
     boxShadow: "none",
-    height: 50,
+    height: 45,
     transform: "scale(1.5)",
-    width: 50,
+    width: 45,
     margin: "0px 10px",
     "& i": {
       color: "white !important",
@@ -96,12 +96,12 @@ const FabTabs = ({ history }) => {
       >
         <i className={`fas fa-tags ${classes.icon}`}></i>
       </Fab>
-      <Fab
+      {/* <Fab
         className={val === 3 ? classes.fabActive : classes.fab}
         onClick={() => handleChange(3)}
       >
         <i className={`fas fa-cog ${classes.icon}`}></i>
-      </Fab>
+      </Fab> */}
     </div>
   );
 };
