@@ -25,9 +25,36 @@ const ProfileHeadingCard = ({
   const [open, setOpen] = React.useState(false);
   const inputRef = React.createRef();
 
+
+  const fileInputChange = async ({ target: { files } }) => {
+    // let arr = [];
+    // const sizeLimit = 3000000;
+    // for (let i = 0; i < files.length; i++) {
+    //   const element = files[i];
+    //   let fileName = files[i].name.split(".");
+    //   fileName = fileName[fileName.length - 1];
+    //   if (
+    //     files[i].size <= sizeLimit &&
+    //     imageFormats.some((item) => item === fileName)
+    //   ) {
+    //     arr.push(element);
+    //   } else if (!imageFormats.some((item) => item === fileName)) {
+    //     toastr.error(
+    //       "",
+    //       "Your file type is not supported. Please convert to JPG, PNG, WEBP, TIFF, HEIF JPEG 2000 or SVG format and try again."
+    //     );
+    //   } else {
+    //     toastr.error("", "File size is too large. Please resize and try again");
+    //   }
+    // }
+   
+   
+  };
+
+
   React.useEffect(()=>{
-      console.log(inputRef)
-      inputRef.current?.click()
+    inputRef.current.onchange = fileInputChange;
+
   },[inputRef])
 
   return (
@@ -42,7 +69,7 @@ const ProfileHeadingCard = ({
           overlap="circle"
           badgeContent={
             <EditIcon
-              onCLick={() => inputRef.current.click()}
+              onClick={() => inputRef.current.click()}
               className={classes.editIco}
             />
           }
@@ -77,7 +104,7 @@ const ProfileHeadingCard = ({
         </Button>
       </center>
       <ProfileValueDialog open={open} onClose={() => setOpen(false)} />
-      <input style={{ display: "hidden" }} type="image/*" ref={inputRef} />
+      <input style={{ display: "none" }} type="file" accept="image/*" ref={inputRef} />
     </Paper>
   );
 };

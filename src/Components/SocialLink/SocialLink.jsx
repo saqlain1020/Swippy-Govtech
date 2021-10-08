@@ -60,9 +60,6 @@ const SocialLink = ({ icon, text,url }) => {
       case "facebook":
         setSrc(Facebook);
         break;
-      case "facebook":
-        setSrc(Facebook);
-        break;
       default:
         setSrc(LinkIco);
     }
