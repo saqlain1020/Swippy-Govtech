@@ -10,6 +10,8 @@ const Routes = () => {
             {/* <AuthenticatedRoute path={"/test"} component={Test} /> */}
             <Route path={"/test"} component={Test} />
             <Route path={"/auth"} component={Auth} />
+            <AuthenticatedRoute path={"/dashboard"} render={(props)=>(<UserRoutes/>)}/>
+
         </Switch>
     )
 }
