@@ -30,6 +30,8 @@ const socials = [
 
 const AddSocialDialog = ({ open, onClose }) => {
   const classes = useStyles();
+  const [type, setType] = React.useState("");
+  const [url, setUrl] = React.useState("");
 
   const submit = (e) => {
     e.preventDefault();
@@ -41,7 +43,7 @@ const AddSocialDialog = ({ open, onClose }) => {
       open={open}
       onClose={onClose}
       className={classes.root}
-      maxWidth="md"
+      maxWidth="sm"
     >
       <form onSubmit={submit}>
         <Grid container spacing={2}>
@@ -52,7 +54,14 @@ const AddSocialDialog = ({ open, onClose }) => {
             <Divider />
           </Grid>
           <Grid item xs={12}>
-            <Select required fullWidth label="Link Type" labelWidth={200}>
+            <Select
+              value={type}
+              onChange={(e) => setType(e.target.value)}
+              required
+              fullWidth
+              label="Link Type"
+              labelWidth={200}
+            >
               {socials.map((item) => (
                 <MenuItem key={uuid()} value={item}>
                   {item}
@@ -61,7 +70,13 @@ const AddSocialDialog = ({ open, onClose }) => {
             </Select>
           </Grid>
           <Grid item xs={12}>
-            <TextField required fullWidth label="URL" />
+            <TextField
+              value={url}
+              onChange={(e) => e.target.value}
+              required
+              fullWidth
+              label="URL"
+            />
           </Grid>
           <Grid item xs={12}>
             <Typography align="right">
