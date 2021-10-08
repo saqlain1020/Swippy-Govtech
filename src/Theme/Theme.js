@@ -99,6 +99,11 @@ const theme = createMuiTheme({
       },
     },
   },
+  custom:{
+    shadow:{
+      icon:"0px 10px 25px 0px rgb(0 0 61 / 50%)"
+    }
+  }
 });
 
 export default theme;

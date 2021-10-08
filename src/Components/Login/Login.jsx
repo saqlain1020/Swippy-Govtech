@@ -48,6 +48,7 @@ const Login = ({ history }) => {
 
   const submit = (e) => {
     e.preventDefault();
+    history.push("/dashboard/profile")
   };
 
   return (

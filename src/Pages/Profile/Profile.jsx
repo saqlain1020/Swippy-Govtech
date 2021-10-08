@@ -1,7 +1,7 @@
 import React from "react";
-import { Avatar, Button, Card, Container, makeStyles, Paper, Typography } from "@material-ui/core";
-import Logo from "src/Assets/images/logo.png";
+import {  Container, makeStyles,} from "@material-ui/core";
 import ProfileHeadingCard from "src/Components/ProfileHeadingCard/ProfileHeadingCard";
+import SocialCards from "src/Components/SocialCards/SocialCards";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -18,6 +18,7 @@ const Profile = () => {
     <div className={classes.root}>
       <Container maxWidth="lg">
         <ProfileHeadingCard style={{marginTop:20}} />
+        <SocialCards style={{marginTop:30}}/>
       </Container>
     </div>
   );
