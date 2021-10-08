@@ -1,7 +1,7 @@
-import { SET_USER } from "./authConstants";
+import { SET_USER } from "./userConstants";
 let initialState = {};
 
-const authReducer = (state = initialState, action) => {
+const userReducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
     case SET_USER:
@@ -11,4 +11,4 @@ const authReducer = (state = initialState, action) => {
   }
 };
 
-export default authReducer;
+export default userReducer;

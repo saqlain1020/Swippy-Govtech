@@ -27,27 +27,27 @@ const useStyles = makeStyles((theme) => ({
 const links = [
   {
     icon: "facebook",
-    text: "My Facebook",
+    title: "My Facebook",
   },
   {
     icon: "instagram",
-    text: "My Insta",
+    title: "My Insta",
   },
   {
     icon: "snapchat",
-    text: "Mr moodle",
+    title: "Mr moodle",
   },
   {
     icon: "whatsapp",
-    text: "Personal num",
+    title: "Personal num",
   },
   {
     icon: "message",
-    text: "Message me",
+    title: "Message me",
   },
   {
     icon: "facebook",
-    text: "My Facebook",
+    title: "My Facebook",
   },
   {
     icon: "twitter",

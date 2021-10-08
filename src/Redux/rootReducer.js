@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import authReducer from "./auth/authReducer";
+import userReducer from "./user/userReducer";
 import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";
 import { reducer as notificationsReducer } from "reapop";
@@ -12,7 +12,7 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
-  auth: authReducer,
+  user: userReducer,
   notifications: notificationsReducer(),
   loading: loaderReducer,
 });

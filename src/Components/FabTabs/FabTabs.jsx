@@ -1,5 +1,6 @@
 import React from "react";
 import { Fab, makeStyles } from "@material-ui/core";
+import { withRouter } from "react-router";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -53,12 +54,28 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const FabTabs = () => {
+const FabTabs = ({ history }) => {
   const classes = useStyles();
+  console.log(history.location.pathname);
   const [val, setVal] = React.useState(0);
   const handleChange = (v) => {
+    v === 0 && history.push("/dashboard/qr");
+    v === 1 && history.push("/dashboard/profile");
+    v === 2 && history.push("/dashboard/settings");
     setVal(v);
   };
+
+  React.useEffect(() => {
+    let path = history.location.pathname;
+    if (path.includes("settings")) {
+      setVal(2);
+    } else if (path.includes("qr")) {
+      setVal(0);
+    } else if (path.includes("profile")) {
+      setVal(1);
+    }
+  }, [history]);
+
   return (
     <div className={classes.root}>
       <Fab
@@ -83,4 +100,4 @@ const FabTabs = () => {
   );
 };
 
-export default FabTabs;
+export default withRouter(FabTabs);

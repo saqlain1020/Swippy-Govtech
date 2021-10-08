@@ -28,13 +28,19 @@ const socials = [
   "link",
 ];
 
-const AddSocialDialog = ({ open, onClose }) => {
+const AddSocialDialog = ({ open, onClose, social }) => {
   const classes = useStyles();
-  const [type, setType] = React.useState("");
-  const [url, setUrl] = React.useState("");
+  const [type, setType] = React.useState(social?.icon || "");
+  const [url, setUrl] = React.useState(social?.url || "");
+  const [title, setTitle] = React.useState(social?.title || "");
 
   const submit = (e) => {
     e.preventDefault();
+    if (social?.id) {
+      // update
+    } else {
+      // Add
+    }
   };
 
   return (
@@ -54,6 +60,15 @@ const AddSocialDialog = ({ open, onClose }) => {
             <Divider />
           </Grid>
           <Grid item xs={12}>
+            <TextField
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              required
+              fullWidth
+              label="Title"
+            />
+          </Grid>
+          <Grid item xs={12}>
             <Select
               value={type}
               onChange={(e) => setType(e.target.value)}
@@ -69,10 +84,11 @@ const AddSocialDialog = ({ open, onClose }) => {
               ))}
             </Select>
           </Grid>
+
           <Grid item xs={12}>
             <TextField
               value={url}
-              onChange={(e) => e.target.value}
+              onChange={(e) => setUrl(e.target.value)}
               required
               fullWidth
               label="URL"

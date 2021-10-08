@@ -1,6 +1,6 @@
 import { auth, serverTimestamp } from "../../Firebase/Firebase";
-import { firestore } from "./../../Firebase/Firebase";
-import { SET_USER } from "./authConstants";
+import { firestore } from "../../Firebase/Firebase";
+import { SET_USER } from "./userConstants";
 import history from "src/Routes/history";
 import { notify } from "reapop";
 import { LOADER_START, LOADER_STOP } from "../loader/loaderConstants";
@@ -73,6 +73,7 @@ export const authListener = () => async (dispatch) => {
 export const signout = () => async (dispatch) => {
   try {
     await auth.signOut();
+    history.push("/auth")
   } catch (error) {
     dispatch(notify(error.message, "error"));
   }

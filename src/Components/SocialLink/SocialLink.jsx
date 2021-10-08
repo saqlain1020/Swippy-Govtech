@@ -14,6 +14,7 @@ import Tiktok from "src/Assets/icon/tiktok.png";
 import Whatsapp from "src/Assets/icon/whatsapp.png";
 import Facebook from "src/Assets/icon/facebook.png";
 import { Link } from "react-router-dom";
+import AddSocialDialog from './../AddSocialDialog/AddSocialDialog';
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -29,9 +30,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SocialLink = ({ icon, text, url }) => {
+const SocialLink = ({ icon, title, url, id }) => {
   const classes = useStyles();
   const [src, setSrc] = React.useState(Link);
+  const [open, setOpen] = React.useState(false);
 
   React.useEffect(() => {
     switch (icon) {
@@ -72,17 +74,22 @@ const SocialLink = ({ icon, text, url }) => {
       <a href={url} className={classes.root}>
         <img width="130px" height="130px" className={classes.img} src={src} />
         <Typography variant="h6" align="center" className={classes.text}>
-          <b>{text}</b>
+          <b>{title}</b>
         </Typography>
       </a>
       <div className="center">
-        <IconButton size="small">
+        <IconButton size="small" onClick={() => setOpen(true)}>
           <BorderColorIcon />
         </IconButton>
         <IconButton size="small">
           <DeleteIcon />
         </IconButton>
       </div>
+      <AddSocialDialog
+        open={open}
+        onClose={() => setOpen(false)}
+        social={{ icon, title, url, id }}
+      />
     </div>
   );
 };
@@ -91,12 +98,14 @@ export default SocialLink;
 
 SocialLink.propTypes = {
   icon: PropTypes.string,
-  text: PropTypes.string,
+  title: PropTypes.string,
   url: PropTypes.string,
+  id: PropTypes.string,
 };
 
 SocialLink.defaultProps = {
   icon: "link",
-  text: "Link",
+  title: "Link",
   url: "",
+  id: null,
 };

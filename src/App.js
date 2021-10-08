@@ -5,7 +5,7 @@ import { Container, ThemeProvider } from "@material-ui/core";
 import theme from "./Theme/Theme";
 import Routes from "./Routes/Routes";
 import { connect } from "react-redux";
-import { authListener } from "src/Redux/auth/authActions";
+import { authListener } from "src/Redux/user/userActions";
 import Loading from "./Components/Loading/Loading";
 
 function App({ authListener }) {

@@ -11,7 +11,7 @@ import MailOutlineRoundedIcon from "@material-ui/icons/MailOutlineRounded";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import VisibilityOffOutlinedIcon from "@material-ui/icons/VisibilityOffOutlined";
 import VisibilityOutlinedIcon from "@material-ui/icons/VisibilityOutlined";
-import { signin } from "./../../Redux/auth/authActions";
+import { signin } from "../../Redux/user/userActions";
 import { connect } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({

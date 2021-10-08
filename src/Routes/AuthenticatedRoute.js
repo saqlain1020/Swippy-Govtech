@@ -8,17 +8,16 @@ import { Route } from "react-router";
 const AuthenticatedRoute = ({ auth, ...props }) => {
   const dispatch = useDispatch();
 
-  if (!auth.uid && process.env.NODE_ENV === "production") {
+  if (!auth.uid && process.env.NODE_ENV !== "production") {
     dispatch(notify("Not Authenticated.", "warning"));
-    // dispatch(notify("You are not allowed to visit this page.", "warning"));
-    // history.push("/auth");
+    history.push("/auth");
   }
 
   return <Route {...props} />;
 };
 
 const mapState = (store) => ({
-  auth: store.auth,
+  auth: store.user,
 });
 
 export default connect(mapState)(AuthenticatedRoute);

@@ -13,7 +13,7 @@ import VisibilityOffOutlinedIcon from "@material-ui/icons/VisibilityOffOutlined"
 import VisibilityOutlinedIcon from "@material-ui/icons/VisibilityOutlined";
 import FaceIcon from "@material-ui/icons/Face";
 import { connect } from "react-redux";
-import { signup } from "./../../Redux/auth/authActions";
+import { signup } from "../../Redux/user/userActions";
 
 const useStyles = makeStyles((theme) => ({
   root: {

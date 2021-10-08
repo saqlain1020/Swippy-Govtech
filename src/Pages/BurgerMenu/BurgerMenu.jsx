@@ -1,9 +1,16 @@
 import React from "react";
-import { elastic as Menu } from "react-burger-menu";
-import { List, ListItem, makeStyles } from "@material-ui/core";
+import { slide as Menu } from "react-burger-menu";
+import {
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  makeStyles,
+} from "@material-ui/core";
 import { v4 as uuid } from "uuid";
 import Logo from "src/Assets/images/logo.png";
 import FabTabs from "src/Components/FabTabs/FabTabs";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -16,9 +23,17 @@ const useStyles = makeStyles((theme) => ({
     // paddingLeft: 100,
     height: "250px",
     paddingTop: 5,
-    display:"flex"    ,
-    justifyContent:"center",
+    display: "flex",
+    justifyContent: "center",
     paddingBottom: 5,
+  },
+  leftBar: {
+    width: 40,
+    height: "100%",
+    background: theme.palette.primary.main,
+    position: "absolute",
+    top: 0,
+    left: 0,
   },
 }));
 var styles = {
@@ -43,7 +58,7 @@ var styles = {
     background: "#bdc3c7",
   },
   bmMenuWrap: {
-    position: "absolute",
+    position: "fixed",
     top: 0,
     height: "100%",
     boxShadow: "0px 0px 15px rgba(0,0,0,0.2)",
@@ -71,7 +86,7 @@ var styles = {
     background: "rgb(0 135 255 / 6%)",
   },
 };
-const BurgerMenu = ({ items = [], children }) => {
+const BurgerMenu = ({ children }) => {
   const classes = useStyles();
 
   return (
@@ -83,14 +98,54 @@ const BurgerMenu = ({ items = [], children }) => {
         className={classes.menu}
         styles={styles}
       >
-        {items.map((item) => (
-          <List key={uuid()}>
-            <ListItem>{item}</ListItem>
+        <div style={{ display: "flex" }}>
+          <div className={classes.leftBar} />
+          <List>
+            <Link to="/">
+              <ListItem button>
+                <ListItemIcon>
+                  <i className="fas fa-home"></i>
+                </ListItemIcon>
+                <ListItemText primary="Home" />
+              </ListItem>
+            </Link>
+            <Link to="/dashboard">
+              <ListItem button>
+                <ListItemIcon>
+                  <i className="fas fa-th-large"></i>
+                </ListItemIcon>
+                <ListItemText primary="Dashboard" />
+              </ListItem>
+            </Link>
+            <Link to="/dashboard/Qr">
+              <ListItem button>
+                <ListItemIcon>
+                  <i className="fas fa-qrcode"></i>
+                </ListItemIcon>
+                <ListItemText primary="QR Code" />
+              </ListItem>
+            </Link>
+            <Link to="/dashboard/settings">
+              <ListItem button>
+                <ListItemIcon>
+                  <i className="fas fa-cog"></i>
+                </ListItemIcon>
+                <ListItemText primary="Settings" />
+              </ListItem>
+            </Link>
+            <Link to="/signout">
+              <ListItem button>
+                <ListItemIcon>
+                  <i className="fas fa-sign-out-alt"></i>
+                </ListItemIcon>
+                <ListItemText primary="Signout" />
+              </ListItem>
+            </Link>
           </List>
-        ))}
+        </div>
       </Menu>
       <main id="page-wrap">
-        <FabTabs/>
+        <FabTabs />
         <div className={classes.nav}>
           <img src={Logo} alt="swippy" height="50px" />
         </div>
