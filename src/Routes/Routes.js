@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router'
 import Test from './../Pages/Test/Test';
 import AuthenticatedRoute from './AuthenticatedRoute';
 import Auth from './../Pages/Auth/Auth';
+import UserRoutes from './UserRoutes';
 
 const Routes = () => {
     return (
@@ -11,7 +12,6 @@ const Routes = () => {
             <Route path={"/test"} component={Test} />
             <Route path={"/auth"} component={Auth} />
             <AuthenticatedRoute path={"/dashboard"} render={(props)=>(<UserRoutes/>)}/>
-
         </Switch>
     )
 }

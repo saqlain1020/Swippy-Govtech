@@ -1,6 +1,7 @@
 import React from "react";
 import { elastic as Menu } from "react-burger-menu";
-import { List, ListItem, ListItemAvatar, makeStyles } from "@material-ui/core";
+import { List, ListItem,  makeStyles } from "@material-ui/core";
+import {v4 as uuid} from 'uuid';
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -72,7 +73,7 @@ const BurgerMenu = ({ items = [], children }) => {
         styles={styles}
       >
         {items.map((item) => (
-          <List>
+          <List key={uuid()}>
             <ListItem>{item}</ListItem>
           </List>
         ))}

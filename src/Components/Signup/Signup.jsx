@@ -37,7 +37,11 @@ const useStyles = makeStyles((theme) => ({
 const Login = ({ history }) => {
   const classes = useStyles();
   const [show, setShow] = React.useState(false);
-  const [state, setState] = React.useState({});
+  const [state, setState] = React.useState({
+    email: "",
+    name: "",
+    password: "",
+  });
 
   const handleChange = (e) => {
     setState({

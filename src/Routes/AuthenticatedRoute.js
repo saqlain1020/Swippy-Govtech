@@ -8,11 +8,11 @@ import { Route } from "react-router";
 const AuthenticatedRoute = ({ auth, ...props }) => {
   const dispatch = useDispatch();
 
-  if (!auth.uid) {
+  if (!auth.uid && process.env.NODE_ENV === "production") {
     dispatch(notify("You are not allowed to visit this page.", "warning"));
     history.push("/");
   }
-  
+
   return <Route {...props} />;
 };
 

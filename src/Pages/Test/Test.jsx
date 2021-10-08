@@ -17,7 +17,7 @@ const menuItems = [
 
 const Test = () => {
     const classes = useStyles();
-    
+    console.log(process.env)
 
     return (
         <div className={classes.root}>
