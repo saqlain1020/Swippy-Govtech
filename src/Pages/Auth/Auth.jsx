@@ -6,12 +6,27 @@ import Logo from "src/Assets/images/logo.png";
 import Login from "src/Components/Login/Login";
 import Signup from "src/Components/Signup/Signup";
 import { Route } from "react-router";
+import Bg from "src/Assets/images/black-bg.jpg"
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
     minHeight: "100vh",
     background: theme.palette.primary.main,
+    background: "#101942",
+    background: "wheat",
+    postion:"relative",
+    "&:before":{
+      content: "''",
+      background: `url(${Bg})`,
+      filter: "saturate(0.3) brightness(0.5)",
+      backgroundSize:"cover",
+      height:"100%",
+      width:"100%",
+      position:"absolute",
+      top:0,
+      left:0,
+    }
   },
   container: {
     width: "100%",
@@ -20,9 +35,10 @@ const useStyles = makeStyles((theme) => ({
     height: 700,
     position: "relative",
     borderRadius: 30,
-    border: "6px solid black",
+    border: "6px solid white",
     overflow: "hidden",
-    boxShadow: "10px 10px 18px 0px rgb(0 0 0 / 67%)",
+    // boxShadow: "0px 0px 25px 0px rgba(255,255,255,0.2)",
+    boxShadow: "0px 9px 18px 0px rgb(0 0 0 / 67%)",
     background: `url(${ImgSrc})`,
     backgroundColor: "white",
     backgroundSize: "contain",

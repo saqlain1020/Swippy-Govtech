@@ -3,12 +3,19 @@ import { createMuiTheme } from "@material-ui/core";
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: "#0069FB",
+      // main: "#0069FB",
+      main: "#020202",
+      
+    },
+    secondary:{
+      main: "#ffffff",
     },
     text: {
       light: "#333333",
       primary: "rgba(0,0,0,0.4)",
-      secondary: "#0069fb",
+      // primary: "rgba(0,0,0,0.4)",
+      // secondary: "#0069fb",
+      secondary: "#020202",
     },
   },
   typography: {
@@ -52,28 +59,39 @@ const theme = createMuiTheme({
     MuiButton: {
       root: {
         textTransform: "none",
-        paddingTop:7,
-        paddingBottom:7,
+        paddingTop: 7,
+        paddingBottom: 7,
       },
-      
     },
-    MuiCircularProgress:{
-      root:{
+    MuiCircularProgress: {
+      root: {
         color: "white",
-        width:25,
-        height:25,
+        width: 25,
+        height: 25,
       },
-      colorPrimary:{
-        width:"25px !important",
-        height:"25px !important",
+      colorPrimary: {
+        width: "25px !important",
+        height: "25px !important",
       },
-      colorSecondary:{
+      colorSecondary: {
         color: "white",
-        width:"25px !important",
-        height:"25px !important",
-      }
-
-    }
+        width: "25px !important",
+        height: "25px !important",
+      },
+    },
+    MuiAvatar: {
+      root: {
+        boxShadow: "0px 3px 10px rgba(0,0,0,0.3)",
+      },
+    },
+    MuiPaper: {
+      elevation1: {
+        // boxShadow: "0px 3px 20px rgba(0,0,0,0.1)",
+        boxShadow: "0px 20px 35px rgb(0 0 61 / 15%)",
+        padding: 20,
+        borderRadius: 10,
+      },
+    },
   },
 });
 

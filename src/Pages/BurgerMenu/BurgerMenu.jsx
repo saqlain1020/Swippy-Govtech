@@ -2,6 +2,8 @@ import React from "react";
 import { elastic as Menu } from "react-burger-menu";
 import { List, ListItem,  makeStyles } from "@material-ui/core";
 import {v4 as uuid} from 'uuid';
+import Logo from "src/Assets/images/logo.png";
+
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -9,17 +11,24 @@ const useStyles = makeStyles((theme) => ({
     //   background: "red",
     // position:"relative"
   },
+  nav:{
+    background: theme.palette.primary.main,
+    paddingLeft:100,
+    height:60,
+    paddingTop:5,
+    paddingBottom:5,
+}
 }));
 var styles = {
   bmBurgerButton: {
     position: "relative",
     width: "25px",
     height: "20px",
-    left: "36px",
-    top: "36px",
+    left: "20px",
+    top: "20px",    
   },
   bmBurgerBars: {
-    background: "#373a47",
+    background: "white",
   },
   bmBurgerBarsHover: {
     background: "#a90000",
@@ -78,7 +87,10 @@ const BurgerMenu = ({ items = [], children }) => {
           </List>
         ))}
       </Menu>
-      <main id="page-wrap">{children}</main>
+      <main id="page-wrap">
+      <div className={classes.nav}><img src={Logo} alt="swippy" height="100%"/></div>
+        {children}
+        </main>
     </div>
   );
 };

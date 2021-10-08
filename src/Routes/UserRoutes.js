@@ -1,6 +1,7 @@
 import { Link } from "@material-ui/core";
 import React from "react";
 import BurgerMenu from "src/Pages/BurgerMenu/BurgerMenu";
+import Profile from "src/Pages/Profile/Profile";
 import AuthenticatedRoute from './AuthenticatedRoute';
 
 const menuItems = [
@@ -14,7 +15,7 @@ const UserRoutes = () => {
   return (
     <>
       <BurgerMenu items={menuItems}>
-          <AuthenticatedRoute path="/dashboard/profile"/>
+          <AuthenticatedRoute path="/dashboard/profile" component={Profile}/>
       </BurgerMenu>
     </>
   );
