@@ -226,3 +226,4 @@ export const sendPasswordResetEmail = (email) => async (dispatch) => {
     dispatch(notify(error.message, "error"));
   }
 };
+
