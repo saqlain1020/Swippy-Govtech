@@ -11,75 +11,7 @@ import {
 import PropType from "prop-types";
 import EditIcon from "@material-ui/icons/Edit";
 import ProfileValueDialog from "../ProfileValueDialog/ProfileValueDialog";
-
-const useStyles = makeStyles((theme) => ({
-  profileTop: {
-    display: "flex",
-    justifyContent: "center",
-    [theme.breakpoints.down("xs")]: {
-      justifyContent: "flex-start",
-    },
-  },
-  avatarBadge: {
-    width: "100px",
-    height: "100px",
-    marginRight: 30,
-    "& .MuiBadge-badge": {
-      padding: 5,
-      height: "auto",
-      borderRadius: 360,
-      [theme.breakpoints.down("xs")]: {
-        padding: 3,
-        "& svg": {
-          width: 15,
-          height: 15,
-        },
-      },
-    },
-    [theme.breakpoints.down("xs")]: {
-      width: "60px",
-      height: "60px",
-    },
-  },
-  avatar: {
-    width: "100px",
-    height: "100px",
-    // marginRight: 30,
-    [theme.breakpoints.down("xs")]: {
-      width: "60px",
-      height: "60px",
-    },
-  },
-  heading: {
-    fontWeight: 600,
-    [theme.breakpoints.down("xs")]: {
-      fontSize: 25,
-    },
-  },
-  description: {
-    [theme.breakpoints.down("xs")]: {
-      fontSize: 13,
-    },
-  },
-  directBtn: {
-    width: 300,
-    margin: "auto",
-    marginTop: 20,
-  },
-  editIco: {
-    width: 20,
-    height: 20,
-    overflow: "hidden",
-    cursor: "pointer",
-  },
-  icon: {
-    color: theme.palette.primary.main,
-    [theme.breakpoints.down("xs")]: {
-      width: 15,
-      height: 15,
-    },
-  },
-}));
+import useStyles from "./ProfileHeadingCardStyles";
 
 const ProfileHeadingCard = ({
   className,
@@ -91,6 +23,12 @@ const ProfileHeadingCard = ({
 }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const inputRef = React.createRef();
+
+  React.useEffect(()=>{
+      console.log(inputRef)
+      inputRef.current?.click()
+  },[inputRef])
 
   return (
     <Paper style={{ ...style }} className={className}>
@@ -102,7 +40,12 @@ const ProfileHeadingCard = ({
           }}
           className={classes.avatarBadge}
           overlap="circle"
-          badgeContent={<EditIcon className={classes.editIco} />}
+          badgeContent={
+            <EditIcon
+              onCLick={() => inputRef.current.click()}
+              className={classes.editIco}
+            />
+          }
           color="primary"
         >
           <Avatar className={classes.avatar} src={imgSrc} />
@@ -134,6 +77,7 @@ const ProfileHeadingCard = ({
         </Button>
       </center>
       <ProfileValueDialog open={open} onClose={() => setOpen(false)} />
+      <input style={{ display: "hidden" }} type="image/*" ref={inputRef} />
     </Paper>
   );
 };

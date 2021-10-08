@@ -10,7 +10,7 @@ const AuthenticatedRoute = ({ auth, ...props }) => {
 
   if (!auth.uid && process.env.NODE_ENV === "production") {
     dispatch(notify("You are not allowed to visit this page.", "warning"));
-    history.push("/");
+    history.push("/auth");
   }
 
   return <Route {...props} />;

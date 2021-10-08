@@ -8,7 +8,8 @@ import UserRoutes from './UserRoutes';
 const Routes = () => {
     return (
         <Switch>
-            {/* <AuthenticatedRoute path={"/test"} component={Test} /> */}
+            <AuthenticatedRoute path={"/"} component={null} exact />
+            
             <Route path={"/test"} component={Test} />
             <Route path={"/auth"} component={Auth} />
             <AuthenticatedRoute path={"/dashboard"} render={(props)=>(<UserRoutes/>)}/>
