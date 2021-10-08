@@ -14,7 +14,7 @@ ReactDOM.render(
     <Router history={history}>
       <Provider store={store}>
         <PersistGate persistor={persistor}>
-          <ToastrComponent/>
+          <ToastrComponent />
           <App />
         </PersistGate>
       </Provider>

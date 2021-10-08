@@ -1,5 +1,8 @@
 import "./App.css";
 import { setUpNotifications } from "reapop";
+import { Container, ThemeProvider } from "@material-ui/core";
+import theme from "./Theme/Theme";
+import Routes from "./Routes/Routes";
 
 function App() {
   setUpNotifications({
@@ -10,9 +13,15 @@ function App() {
       dismissAfter: 5000,
     },
   });
-  
+
   return (
-   <div></div>
+    <>
+      <ThemeProvider theme={theme}>
+        <Container maxWidth="xl" disableGutters>
+          <Routes />
+        </Container>
+      </ThemeProvider>
+    </>
   );
 }
 
