@@ -25,7 +25,7 @@ export const updateUser = (user) => {
   };
 };
 
-const getUserData = async (uid) => {
+export const getUserData = async (uid) => {
   try {
     let query = await firestore.collection("users").doc(uid).get();
     let displayPhoto = await getProfilePhoto(uid);

@@ -89,14 +89,17 @@ const SocialLink = ({ icon, title, url, index, deleteSocial }) => {
           <b>{title}</b>
         </Typography>
       </a>
-      <div className="center">
-        <IconButton size="small" onClick={() => setOpen(true)}>
-          <BorderColorIcon />
-        </IconButton>
-        <IconButton size="small" onClick={handleDelete}>
-          <DeleteIcon />
-        </IconButton>
-      </div>
+      {index !== undefined && (
+        <div className="center">
+          <IconButton size="small" onClick={() => setOpen(true)}>
+            <BorderColorIcon />
+          </IconButton>
+          <IconButton size="small" onClick={handleDelete}>
+            <DeleteIcon />
+          </IconButton>
+        </div>
+      )}
+
       <AddSocialDialog
         open={open}
         onClose={() => setOpen(false)}

@@ -24,6 +24,7 @@ const ProfileHeadingCard = ({
   user: { displayPhoto, name, description, direct = false },
   changeDirect,
   uploadProfileImage,
+  data,
 }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
@@ -53,6 +54,7 @@ const ProfileHeadingCard = ({
         }}
         className={classes.avatarBadge}
         overlap="circle"
+        invisible={data ? true : false}
         badgeContent={
           <EditIcon
             onClick={() => inputRef.current.click()}
@@ -61,47 +63,57 @@ const ProfileHeadingCard = ({
         }
         color="primary"
       >
-        <Avatar
-          className={classes.avatar}
-          src={displayPhoto ? displayPhoto : imgPlaceholder}
-        />
+        {!data && (
+          <Avatar
+            className={classes.avatar}
+            src={displayPhoto ? displayPhoto : imgPlaceholder}
+          />
+        )}
+        {data && (
+          <Avatar
+            className={classes.avatar}
+            src={data.displayPhoto ? data.displayPhoto : imgPlaceholder}
+          />
+        )}
       </Badge>
       {/* </center> */}
       <div className={classes.profileTop}>
         <Typography variant="h4" align="center" className={classes.heading}>
-          {name}
+          {data ? data.name : name}
         </Typography>
 
         <Typography align="center" className={classes.description}>
-          {description || "Enter description"}
+          {data ? data.description : description || "Enter description"}
         </Typography>
       </div>
-      <Grid container spacing={2} style={{ padding: 20 }}>
-        <Grid item xs={6}>
-          <Typography align="right">
+      {!data && (
+        <Grid container spacing={2} style={{ padding: 20 }}>
+          <Grid item xs={6}>
+            <Typography align="right">
+              <Button
+                variant="contained"
+                color="primary"
+                fullWidth
+                className={classes.directBtn}
+                onClick={changeDirect}
+              >
+                Direct {direct ? "On" : "Off"}
+              </Button>
+            </Typography>
+          </Grid>
+          <Grid item xs={6}>
             <Button
               variant="contained"
               color="primary"
               fullWidth
               className={classes.directBtn}
-              onClick={changeDirect}
+              onClick={() => setOpen(true)}
             >
-              Direct {direct ? "On" : "Off"}
+              Edit Profile
             </Button>
-          </Typography>
+          </Grid>
         </Grid>
-        <Grid item xs={6}>
-          <Button
-            variant="contained"
-            color="primary"
-            fullWidth
-            className={classes.directBtn}
-            onClick={() => setOpen(true)}
-          >
-            Edit Profile
-          </Button>
-        </Grid>
-      </Grid>
+      )}
 
       <ProfileValueDialog open={open} onClose={() => setOpen(false)} />
       <input

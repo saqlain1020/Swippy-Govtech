@@ -23,29 +23,39 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SocialCards = ({ style, className, user: { socialLinks } }) => {
+const SocialCards = ({ style, className, user: { socialLinks }, data }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
   return (
     <Container maxWidth="lg" style={{ ...style }} className={className}>
       <Grid container spacing={2}>
-        {socialLinks &&
+        {!data &&
+          socialLinks &&
           socialLinks.map((item, index) => (
             <Grid key={uuid()} item xs={6} sm={4} md={3} className="center">
               <SocialLink {...item} index={index} />
             </Grid>
           ))}
-        <Grid item xs={6} sm={4} md={3} className={classes.addContainer}>
-          <Button
-            variant="outlined"
-            color="primary"
-            className={classes.addBtn}
-            onClick={() => setOpen(true)}
-          >
-            <AddIcon className={classes.addIco} />
-          </Button>
-        </Grid>
+        {data &&
+          data.socialLinks &&
+          data.socialLinks.map((item) => (
+            <Grid key={uuid()} item xs={6} sm={4} md={3} className="center">
+              <SocialLink {...item} />
+            </Grid>
+          ))}
+        {!data && (
+          <Grid item xs={6} sm={4} md={3} className={classes.addContainer}>
+            <Button
+              variant="outlined"
+              color="primary"
+              className={classes.addBtn}
+              onClick={() => setOpen(true)}
+            >
+              <AddIcon className={classes.addIco} />
+            </Button>
+          </Grid>
+        )}
       </Grid>
       <AddSocialDialog open={open} onClose={() => setOpen(false)} />
     </Container>

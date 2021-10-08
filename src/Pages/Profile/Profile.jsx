@@ -9,10 +9,7 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     top: -50,
     borderRadius: 50,
-  },
-  nav: {
-    background: theme.palette.primary.main,
-  },
+  }, 
 }));
 
 const Profile = () => {
