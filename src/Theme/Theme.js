@@ -3,11 +3,12 @@ import { createMuiTheme } from "@material-ui/core";
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: "#1A54F8",
+      main: "#0069FB",
     },
     text: {
       light: "#333333",
-      primary: "#333333",
+      primary: "rgba(0,0,0,0.4)",
+      secondary: "#0069fb",
     },
   },
   typography: {
@@ -37,8 +38,25 @@ const theme = createMuiTheme({
         fontFamily: "'Itim', cursive",
       },
     },
-    
-    
+
+    MuiTextField: {
+      root: {
+        "& .MuiInputBase-inputAdornedStart": {
+          marginLeft: 15,
+        },
+        "& .MuiInputBase-root": {
+          paddingBottom: 5,
+        },
+      },
+    },
+    MuiButton: {
+      root: {
+        textTransform: "none",
+        paddingTop:7,
+        paddingBottom:7,
+      },
+      
+    },
   },
 });
 
