@@ -1,8 +1,11 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core";
+import { Button, makeStyles } from "@material-ui/core";
 import QRCode from "react-qr-code";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { Slide } from "@material-ui/core";
+import FileCopyIcon from "@material-ui/icons/FileCopy";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import { notify } from "reapop";
 
 const useStyles = makeStyles((theme) => ({
   qrContainer: {
@@ -17,22 +20,43 @@ const useStyles = makeStyles((theme) => ({
       padding: 10,
     },
   },
+  shareWrapper: {
+    position: "relative",
+    top: -60,
+  },
 }));
 
 const QR = ({ user }) => {
   const classes = useStyles();
   const [url, setUrl] = React.useState("");
+  const dispatch = useDispatch();
 
   React.useEffect(() => {
     const url = `http://${window.location.host}/profile/${user.username}`;
     setUrl(url);
   }, [user]);
 
+  const copySuccess = () => {
+    dispatch(notify("Copy Successfull", "success"));
+  };
+
   return (
     <div className={"center"}>
       <Slide direction="up" in={true}>
-        <div className={classes.qrContainer}>
-          <QRCode value={url} size={300} level="Q" />
+        <div>
+          <div className={classes.qrContainer}>
+            <QRCode value={url} size={300} level="Q" />
+          </div>
+          <center className={classes.shareWrapper}>
+            <CopyToClipboard
+              onCopy={copySuccess}
+              text={`http://${window.location.host}/profile/${user.username}`}
+            >
+              <Button variant="outlined" color="primary">
+                <FileCopyIcon /> &nbsp;&nbsp;Copy profile link
+              </Button>
+            </CopyToClipboard>
+          </center>
         </div>
       </Slide>
     </div>
