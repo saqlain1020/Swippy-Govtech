@@ -7,13 +7,14 @@ import { storage } from "./../Firebase/Firebase";
 
 export const fetchTagUser = (tagSerial) => async (dispatch) => {
   try {
-    let allValidTags = await getAllValidTags();
-    console.log("Valid Tags", allValidTags);
-    if (!allValidTags.some((item) => item.serial === tagSerial)) {
-      dispatch(notify("Invalid Tag Detected", "error"));
-      history.push("/");
-      return;
-    }
+    //Valid tags check
+    // let allValidTags = await getAllValidTags();
+    // console.log("Valid Tags", allValidTags);
+    // if (!allValidTags.some((item) => item.serial === tagSerial)) {
+    //   dispatch(notify("Invalid Tag Detected", "error"));
+    //   history.push("/");
+    //   return;
+    // }
     let query = await firestore
       .collection("users")
       .where("tags", "array-contains", tagSerial)
@@ -41,12 +42,13 @@ export const fetchTagUser = (tagSerial) => async (dispatch) => {
 
 export const pairTag = (serial, uid) => async (dispatch) => {
   try {
-    let allValidTags = await getAllValidTags();
-    if (!allValidTags.some((item) => item.serial === serial)) {
-      dispatch(notify("Invalid Tag Detected", "error"));
-      history.push("/");
-      return;
-    }
+    //Valid tags check
+    // let allValidTags = await getAllValidTags();
+    // if (!allValidTags.some((item) => item.serial === serial)) {
+    //   dispatch(notify("Invalid Tag Detected", "error"));
+    //   history.push("/");
+    //   return;
+    // }
     await firestore
       .collection("users")
       .doc(uid)
@@ -60,12 +62,12 @@ export const pairTag = (serial, uid) => async (dispatch) => {
   }
 };
 
-export const getAllValidTags = () =>
-  new Promise(async (resolve) => {
-    let allTagsFile = await storage
-      .child("/tags/ALLTAGS.json")
-      .getDownloadURL();
-    let data = await fetch(allTagsFile);
-    let allTags = await data.json();
-    resolve(allTags);
-  });
+// export const getAllValidTags = () =>
+//   new Promise(async (resolve) => {
+//     let allTagsFile = await storage
+//       .child("/tags/ALLTAGS.json")
+//       .getDownloadURL();
+//     let data = await fetch(allTagsFile);
+//     let allTags = await data.json();
+//     resolve(allTags);
+//   });
