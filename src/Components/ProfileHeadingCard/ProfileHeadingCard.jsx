@@ -3,6 +3,7 @@ import {
   Avatar,
   Badge,
   Button,
+  Chip,
   Container,
   Grid,
   Typography,
@@ -21,7 +22,7 @@ const imgPlaceholder =
 const ProfileHeadingCard = ({
   className,
   style,
-  user: { displayPhoto, username, description, direct = false },
+  user: { displayPhoto, username, scanCount, description, direct = false },
   changeDirect,
   uploadProfileImage,
   data,
@@ -85,6 +86,16 @@ const ProfileHeadingCard = ({
         <Typography align="center" className={classes.description}>
           {data ? data.description : description || "Enter description"}
         </Typography>
+        {!data && (
+          <center>
+            <Chip
+              color="primary"
+              size="small"
+              label={`Scan Count: ${scanCount || 0}`}
+              style={{ marginTop: 10 }}
+            />
+          </center>
+        )}
       </div>
       {!data && (
         <Grid container spacing={2} style={{ padding: 20 }}>

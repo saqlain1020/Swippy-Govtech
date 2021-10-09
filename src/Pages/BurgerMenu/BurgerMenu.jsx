@@ -132,14 +132,14 @@ const BurgerMenu = ({ children }) => {
                 <ListItemText primary="QR Code" />
               </ListItem>
             </Link>
-            <Link to="/dashboard/settings">
+            {/* <Link to="/dashboard/settings">
               <ListItem button>
                 <ListItemIcon>
                   <i className="fas fa-cog"></i>
                 </ListItemIcon>
                 <ListItemText primary="Settings" />
               </ListItem>
-            </Link>
+            </Link> */}
             <Link to="/signout">
               <ListItem button>
                 <ListItemIcon>
