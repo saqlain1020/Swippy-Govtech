@@ -32,6 +32,10 @@ const useStyles = makeStyles((theme) => ({
     height: 50,
     width: "90%",
     left: "5%",
+    [theme.breakpoints.down("xs")]: {
+      width: "100%",
+      left: "0%",
+    },
   },
   buyBtn: {
     width: "100%",
@@ -42,19 +46,19 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "center",
     // background: theme.palette.primary.main,
-    background: theme.colors.bg,
+    background: theme.palette.primary.main,
     // color: "white",
-    color: "black",
+    color: "white",
     backgroundSize: "200% 200%",
     cursor: "pointer",
     zIndex: 1,
     border: `1px solid ${theme.palette.primary.main}`,
-    boxSizing:"border-box",
+    boxSizing: "border-box",
     transition: "all 200ms ease-in-out",
     animation: "$shake 4s cubic-bezier(.36,.07,.19,.97) infinite both",
     "&:before": {
       transition: "all 200ms ease-in-out",
-      boxSizing:"border-box",
+      boxSizing: "border-box",
       content: "''",
       position: "absolute",
       zIndex: -1,
@@ -74,23 +78,23 @@ const useStyles = makeStyles((theme) => ({
       left: 7,
     },
   },
-  "@keyframes shake":{
+  "@keyframes shake": {
     "2%, 18%": {
       transform: "rotate(-1deg)",
     },
-    
-    "4%, 16%":{
+
+    "4%, 16%": {
       transform: "rotate(1deg)",
     },
-  
+
     "6%, 10%, 14%": {
       transform: "rotate(-2deg)",
     },
-  
+
     "8%, 12%": {
       transform: "rotate(2deg)",
-    }
-  }
+    },
+  },
   // "@keyframes buyBtn": {
   //   "0%": { backgroundPosition: "0% 50%" },
   //   "50%": { backgroundPosition: "100% 50%" },
