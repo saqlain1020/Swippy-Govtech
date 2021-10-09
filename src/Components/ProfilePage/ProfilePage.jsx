@@ -4,7 +4,7 @@ import ProfileHeadingCard from "src/Components/ProfileHeadingCard/ProfileHeading
 import SocialCards from "src/Components/SocialCards/SocialCards";
 import Logo from "src/Assets/images/logo.png";
 import { Link } from "react-router-dom";
-import { getUserData, getTaggedUserData } from "./../../Redux/user/userActions";
+import { getTaggedUserData } from "./../../Redux/user/userActions";
 import { useDispatch } from "react-redux";
 import {
   LOADER_START,

@@ -142,6 +142,7 @@ const AddSocialDialog = ({
                     return (
                       <ListSubheader key={uuid()}>{item.text}</ListSubheader>
                     );
+                  else return ;
                 })}
               </Select>
             </FormControl>

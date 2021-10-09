@@ -1,9 +1,7 @@
 import firebase, { firestore } from "src/Firebase/Firebase";
 import { notify } from "reapop";
-import history from "src/Routes/history";
 import store from "src/Redux/store";
 import { updateUser } from "src/Redux/user/userActions";
-import { storage } from "./../Firebase/Firebase";
 
 export const fetchTagUser = (tagSerial) => async (dispatch) => {
   try {

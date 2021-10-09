@@ -24,7 +24,6 @@ const useStyles = makeStyles((theme) => ({
 
 const ProfileValueDialog = ({ open, onClose, user, updateUserInfo }) => {
   const classes = useStyles();
-  const [name, setName] = React.useState(user.name || "");
   const [description, setDescription] = React.useState(user.description || "");
 
   const submit = async (e) => {
