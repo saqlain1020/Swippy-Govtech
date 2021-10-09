@@ -169,7 +169,9 @@ const SocialLink = ({
       <a
         href={icon === "contactcard" ? null : url}
         className={classes.root}
-        onClick={()=>generateVCF(contactCard)}
+        onClick={() => {
+          icon === "contactcard" && generateVCF(contactCard);
+        }}
       >
         <img
           width="150px"

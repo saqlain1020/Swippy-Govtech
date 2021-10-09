@@ -41,7 +41,7 @@ export const userNameToUrl = (username, type) => {
       url = `https://www.google.cz/maps/place/address-on-map@49.1943166...`;
       break;
     case "facetime":
-      url = `facetime-audio:14085551234`;
+      url = `number/email/username`;
       break;
     case "clubhouse":
       url = "https://clubhouse.com/mylink123";
@@ -96,10 +96,9 @@ export const shapeUrl = (type, initial) => {
     case "onlyfans":
       url = `https://onlyfans.com/${initial}`;
       break;
-
-    // case "contactcard":
-    //   setSrc(ContactCard);
-    //   break;
+    case "facetime":
+      url = `facetime://${initial}`;
+      break;
     default:
       url = initial;
   }
@@ -109,11 +108,7 @@ export const shapeUrl = (type, initial) => {
 
 export const generateVCF = (contactCard = {}) => {
   let { name = "", email = "", phoneNumber = "" } = contactCard;
-  let str = `BEGIN:VCARD
-  FN:${name}
-  EMAIL;TYPE=internet,pref:${email}
-  TEL;TYPE=work,voice:${phoneNumber}
-  END:VCARD`;
+  let str = `BEGIN:VCARD\nFN:${name}\nEMAIL;TYPE=internet,pref:${email}\nTEL;TYPE=work,voice:${phoneNumber}\nEND:VCARD`;
 
   return downloadString(str, "text/vcf", "download.vcf");
 };
