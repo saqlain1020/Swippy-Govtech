@@ -170,7 +170,7 @@ const AddSocialDialog = ({
                 required
                 fullWidth
                 onBlur={urlFocusOut}
-                label="Username"
+                label={`eg.  ${placeholder}`}
               />
             </Grid>
           )}
