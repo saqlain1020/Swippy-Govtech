@@ -51,14 +51,12 @@ const TagSerial = ({
   const [loading, setLoading] = React.useState(true);
 
   const handleTag = async () => {
-    console.log(serial);
     let user = await fetchTagUser(serial);
-    console.log(user);
     if (user) {
       let social = user.socialLinks.find((item) => item.isPrimary);
       if (social && user.direct) window.location = social.url;
       else {
-        let url = `/profile/${user.uid}`;
+        let url = `/profile/${user.username}`;
         history.push(url);
       }
     } else {

@@ -12,12 +12,21 @@ export const fetchTagUser = (tagSerial) => async (dispatch) => {
       .limit(1)
       .get();
     let user = null;
+    let docId = null;
     query.forEach((doc) => {
       user = doc.data();
+      docId = doc.id;
     });
+    await firestore
+      .collection("users")
+      .doc(docId)
+      .update({
+        scanCount: firebase.firestore.FieldValue.increment(1),
+      });
     return user;
   } catch (error) {
     dispatch(notify(error.message, "error"));
+    console.log(error);
   }
 };
 

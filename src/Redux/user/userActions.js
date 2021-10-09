@@ -26,6 +26,25 @@ export const updateUser = (user) => {
   };
 };
 
+export const getTaggedUserData = async (username) => {
+  try {
+    let data = {};
+    let query = await firestore
+      .collection("users")
+      .where("username", "==", username)
+      .limit(1)
+      .get();
+    query.forEach((doc) => {
+      data = doc.data();
+    });
+    let displayPhoto = await getProfilePhoto(data.uid);
+    console.log(sizeof(data));
+    data.displayPhoto = displayPhoto;
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
 export const getUserData = async (uid) => {
   try {
     let query = await firestore.collection("users").doc(uid).get();
@@ -79,6 +98,7 @@ export const signup = (username, email, pass) => async (dispatch) => {
       uid,
       email,
       username,
+      scanCount: 0,
       createdAt: serverTimestamp,
     };
     await firestore.collection("users").doc(uid).set(obj);
@@ -114,7 +134,6 @@ export const signout = () => async (dispatch) => {
 
 export const updateUserInfo = (obj) => async (dispatch) => {
   try {
-    console.log(obj);
     await firestore
       .collection("users")
       .doc(store.getState().user.uid)
@@ -133,6 +152,7 @@ export const getProfilePhoto = async (uid) => {
     return url;
   } catch (error) {
     console.log(error);
+    return null;
   }
 };
 

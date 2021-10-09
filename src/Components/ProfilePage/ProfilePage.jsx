@@ -4,7 +4,7 @@ import ProfileHeadingCard from "src/Components/ProfileHeadingCard/ProfileHeading
 import SocialCards from "src/Components/SocialCards/SocialCards";
 import Logo from "src/Assets/images/logo.png";
 import { Link } from "react-router-dom";
-import { getUserData } from "./../../Redux/user/userActions";
+import { getUserData, getTaggedUserData } from "./../../Redux/user/userActions";
 import { useDispatch } from "react-redux";
 import {
   LOADER_START,
@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
 const ProfilePage = ({
   history,
   match: {
-    params: { uid },
+    params: { username },
   },
 }) => {
   const classes = useStyles();
@@ -62,13 +62,11 @@ const ProfilePage = ({
   const dispatch = useDispatch();
 
   const fetchUser = async () => {
-    console.log(uid);
     dispatch({
       type: LOADER_START,
     });
-    let data = await getUserData(uid);
-    console.log(data);
-    await setData(data);
+    let data = await getTaggedUserData(username);
+    setData(data);
     dispatch({
       type: LOADER_STOP,
     });

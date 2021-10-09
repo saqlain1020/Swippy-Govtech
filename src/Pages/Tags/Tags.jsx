@@ -67,17 +67,18 @@ const Tags = ({ user, deleteTag }) => {
             </TableCell>
           </TableHead>
           <TableBody>
-            {user.tags.map((item) => (
-              <TableRow key={uuid()}>
-                <TableCell align="center">{item}</TableCell>
-                <TableCell align="center">NFC Tag</TableCell>
-                <TableCell align="center">
-                  <Button>
-                    <DeleteOutlineIcon onClick={() => deleteTag(item)} />
-                  </Button>
-                </TableCell>
-              </TableRow>
-            ))}
+            {user.tags &&
+              user.tags.map((item) => (
+                <TableRow key={uuid()}>
+                  <TableCell align="center">{item}</TableCell>
+                  <TableCell align="center">NFC Tag</TableCell>
+                  <TableCell align="center">
+                    <Button>
+                      <DeleteOutlineIcon onClick={() => deleteTag(item)} />
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
           </TableBody>
         </Table>
       </Container>

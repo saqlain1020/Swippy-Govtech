@@ -13,7 +13,7 @@ const Routes = () => {
   return (
     <Switch>
       <Route path={"/"} render={() => history.push("/auth")} exact />
-      <Route path="/profile/:uid" component={ProfilePage} exact />
+      <Route path="/profile/:username" component={ProfilePage} exact />
       <Route path={"/test"} component={Test} />
       <Route path={"/auth"} component={Auth} />
       <Route path={"/tag/:serial"} component={TagSerial} exact />
