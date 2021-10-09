@@ -111,7 +111,7 @@ const TagSerial = ({
 
   const handlePair = async () => {
     await pairTag(serial, currentUser.uid);
-    setPage(4); //Pair complete
+    // setPage(4); //Pair complete
   };
 
   React.useEffect(() => {
