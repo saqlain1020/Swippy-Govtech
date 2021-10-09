@@ -47,56 +47,60 @@ const ProfileHeadingCard = ({
       style={{ position: "relative", ...style }}
       className={className}
     >
-      {/* <center> */}
-      <Badge
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "right",
-        }}
-        className={classes.avatarBadge}
-        overlap="circle"
-        invisible={data ? true : false}
-        badgeContent={
-          <EditIcon
-            onClick={() => inputRef.current.click()}
-            className={classes.editIco}
-          />
-        }
-        color="primary"
-      >
-        {!data && (
-          <Avatar
-            className={classes.avatar}
-            src={displayPhoto ? displayPhoto : imgPlaceholder}
-          />
-        )}
-        {data && (
-          <Avatar
-            className={classes.avatar}
-            src={data.displayPhoto ? data.displayPhoto : imgPlaceholder}
-          />
-        )}
-      </Badge>
-      {/* </center> */}
-      <div className={classes.profileTop}>
-        <Typography variant="h4" align="center" className={classes.heading}>
-          {data ? data.username : username}
-        </Typography>
-
-        <Typography align="center" className={classes.description}>
-          {data ? data.description : description || "Enter description"}
-        </Typography>
-        {!data && (
-          <center>
-            <Chip
-              color="primary"
-              size="small"
-              label={`Swippys: ${scanCount || 0}`}
-              style={{ marginTop: 10 }}
-            />
-          </center>
-        )}
+      <div className={classes.grid}>
+        <div>
+          <Badge
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "right",
+            }}
+            className={classes.avatarBadge}
+            overlap="circle"
+            invisible={data ? true : false}
+            badgeContent={
+              <EditIcon
+                onClick={() => inputRef.current.click()}
+                className={classes.editIco}
+              />
+            }
+            color="primary"
+          >
+            {!data && (
+              <Avatar
+                className={classes.avatar}
+                src={displayPhoto ? displayPhoto : imgPlaceholder}
+              />
+            )}
+            {data && (
+              <Avatar
+                className={classes.avatar}
+                src={data.displayPhoto ? data.displayPhoto : imgPlaceholder}
+              />
+            )}
+          </Badge>
+          {!data && (
+            <center>
+              <Chip
+                color="primary"
+                size="small"
+                label={`Swippys: ${scanCount || 0}`}
+                style={{ marginTop: 10 }}
+              />
+            </center>
+          )}
+        </div>
+        
+          <div className={classes.profileTop}>
+            <Typography variant="h4" align="center" className={classes.heading}>
+              {data ? data.username : username}
+            </Typography>
+            <Typography align="center" className={classes.description}>
+              {data ? data.description : description || "Enter description"}
+            </Typography>
+          </div>
+        
       </div>
+
       {!data && (
         <Grid container spacing={2} style={{ padding: 20 }}>
           <Grid item xs={6}>

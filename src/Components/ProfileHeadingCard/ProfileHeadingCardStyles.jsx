@@ -2,20 +2,19 @@ import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   profileTop: {
-    paddingTop: 130,
+    paddingTop: 20,
     [theme.breakpoints.down("xs")]: {
-      paddingTop: 70,
+      // paddingTop: 70,
     },
   },
   avatarBadge: {
-    width: "200px",
-    height: "200px",
+    width: "150px",
+    height: "150px",
 
-    position: "absolute",
-    top: "-100px",
-    left: "calc(50% - 100px)",
+    // position: "absolute",
+    // top: "-100px",
+    // left: "calc(50% - 100px)",
     zIndex: 1,
-
     "& .MuiBadge-badge": {
       padding: 8,
       height: "auto",
@@ -27,24 +26,24 @@ const useStyles = makeStyles((theme) => ({
       [theme.breakpoints.down("xs")]: {
         padding: 5,
         "& svg": {
-          width: 30,
-          height: 30,
+          width: 20,
+          height: 20,
         },
       },
     },
     [theme.breakpoints.down("xs")]: {
       left: "calc(50% - 75px)",
-      width: "150px",
-      height: "150px",
+      width: "100px",
+      height: "100px",
     },
   },
   avatar: {
     background: "white",
-    width: "200px",
-    height: "200px",
+    width: "150px",
+    height: "150px",
     [theme.breakpoints.down("xs")]: {
-      width: "150px",
-      height: "150px",
+      width: "100px",
+      height: "100px",
     },
   },
   heading: {
@@ -74,6 +73,12 @@ const useStyles = makeStyles((theme) => ({
       height: 15,
     },
   },
+  grid:{
+    display:"flex",
+    justifyContent:"center",
+    alignItems:"flex-start",
+    margin:"auto",
+  }
 }));
 
 export default useStyles;
