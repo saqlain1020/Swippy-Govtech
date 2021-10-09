@@ -57,7 +57,11 @@ const SocialCards = ({ style, className, user: { socialLinks }, data }) => {
           </Grid>
         )}
       </Grid>
-      <AddSocialDialog open={open} onClose={() => setOpen(false)} />
+      <AddSocialDialog
+        key={uuid()}
+        open={open}
+        onClose={() => setOpen(false)}
+      />
     </Container>
   );
 };

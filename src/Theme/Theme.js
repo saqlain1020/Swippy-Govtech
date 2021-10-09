@@ -16,9 +16,7 @@ const theme = createMuiTheme({
       // primary: "#1C1C1C",
       // secondary: "#0069fb",
       secondary: "rgba(0,0,0,0.7)",
-      
     },
-    
   },
   typography: {
     fontFamily: "'Poppins', sans-serif",
@@ -100,10 +98,16 @@ const theme = createMuiTheme({
         borderRadius: 10,
       },
     },
+    MuiListSubheader: {
+      sticky: {
+        backgroundColor: "rgb(248 250 251)",
+        fontWeight: 600,
+      },
+    },
   },
   colors: {
     bg: "#F3F5F9",
-    vibrant: "#BA3029"
+    vibrant: "#BA3029",
   },
   custom: {
     shadow: {

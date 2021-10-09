@@ -13,12 +13,31 @@ import Spotify from "src/Assets/icon/spotify.png";
 import Tiktok from "src/Assets/icon/tiktok.png";
 import Whatsapp from "src/Assets/icon/whatsapp.png";
 import Facebook from "src/Assets/icon/facebook.png";
+import Messenger from "src/Assets/icon/messenger.png";
+import Youtube from "src/Assets/icon/youtube.png";
+import Pinterest from "src/Assets/icon/pinterest.png";
+import Email from "src/Assets/icon/email.png";
+import SoundCloud from "src/Assets/icon/soundcloud.png";
+import Paypal from "src/Assets/icon/paypal.png";
+import Website from "src/Assets/icon/website.png";
+import Address from "src/Assets/icon/address.png";
+import AppleMusic from "src/Assets/icon/applemusic.png";
+import ContactCard from "src/Assets/icon/contactcard.png";
+import Text from "src/Assets/icon/text.png";
+import Facetime from "src/Assets/icon/facetime.png";
+import Tinder from "src/Assets/icon/tinder.png";
+import Podcast from "src/Assets/icon/podcast.png";
+import Linktree from "src/Assets/icon/linktree.png";
+import Onlyfans from "src/Assets/icon/onlyfans.png";
+import Clubhouse from "src/Assets/icon/clubhouse.png";
+import Telegram from "src/Assets/icon/telegram.png";
 import { Link } from "react-router-dom";
 import AddSocialDialog from "./../AddSocialDialog/AddSocialDialog";
 import { connect } from "react-redux";
-import { deleteSocial,changePrimary } from "src/Redux/user/userActions";
-import StarBorderIcon from '@material-ui/icons/StarBorder';
-import StarIcon from '@material-ui/icons/Star';
+import { deleteSocial, changePrimary } from "src/Redux/user/userActions";
+import StarBorderIcon from "@material-ui/icons/StarBorder";
+import StarIcon from "@material-ui/icons/Star";
+import { generateVCF } from "./../../Util/socialFunctions";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -33,13 +52,22 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 600,
     marginTop: 10,
   },
-  activeIcon:{
-    color :"#ff8400",
-    transform: "scale(1.1)"
-  }
+  activeIcon: {
+    color: "#ff8400",
+    transform: "scale(1.1)",
+  },
 }));
 
-const SocialLink = ({ icon, title, url, isPrimary, index, deleteSocial,changePrimary }) => {
+const SocialLink = ({
+  icon,
+  title,
+  url,
+  contactCard,
+  isPrimary,
+  index,
+  deleteSocial,
+  changePrimary,
+}) => {
   const classes = useStyles();
   const [src, setSrc] = React.useState(Link);
   const [open, setOpen] = React.useState(false);
@@ -73,6 +101,60 @@ const SocialLink = ({ icon, title, url, isPrimary, index, deleteSocial,changePri
       case "facebook":
         setSrc(Facebook);
         break;
+      case "messenger":
+        setSrc(Messenger);
+        break;
+      case "youtube":
+        setSrc(Youtube);
+        break;
+      case "pinterest":
+        setSrc(Pinterest);
+        break;
+      case "email":
+        setSrc(Email);
+        break;
+      case "soundcloud":
+        setSrc(SoundCloud);
+        break;
+      case "paypal":
+        setSrc(Paypal);
+        break;
+      case "website":
+        setSrc(Website);
+        break;
+      case "address":
+        setSrc(Address);
+        break;
+      case "applemusic":
+        setSrc(AppleMusic);
+        break;
+      case "contactcard":
+        setSrc(ContactCard);
+        break;
+      case "text":
+        setSrc(Text);
+        break;
+      case "facetime":
+        setSrc(Facetime);
+        break;
+      case "tinder":
+        setSrc(Tinder);
+        break;
+      case "podcast":
+        setSrc(Podcast);
+        break;
+      case "linktree":
+        setSrc(Linktree);
+        break;
+      case "onlyfans":
+        setSrc(Onlyfans);
+        break;
+      case "clubhouse":
+        setSrc(Clubhouse);
+        break;
+      case "telegram":
+        setSrc(Telegram);
+        break;
       default:
         setSrc(LinkIco);
     }
@@ -84,7 +166,11 @@ const SocialLink = ({ icon, title, url, isPrimary, index, deleteSocial,changePri
 
   return (
     <div>
-      <a href={url} className={classes.root}>
+      <a
+        href={icon === "contactcard" ? null : url}
+        className={classes.root}
+        onClick={()=>generateVCF(contactCard)}
+      >
         <img
           width="150px"
           height="150px"
@@ -121,7 +207,7 @@ const SocialLink = ({ icon, title, url, isPrimary, index, deleteSocial,changePri
         open={open}
         onClose={() => setOpen(false)}
         edit={true}
-        social={{ icon, title, url, index }}
+        social={{ icon, title, url, index, contactCard }}
       />
     </div>
   );

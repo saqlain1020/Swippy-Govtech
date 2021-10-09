@@ -7,6 +7,7 @@ import store from "../store";
 import { storage } from "./../../Firebase/Firebase";
 import firebase from "src/Firebase/Firebase";
 import sizeof from "firestore-size";
+import { shapeUrl } from "src/Util/socialFunctions";
 
 export const setUser = (user) => {
   return {
@@ -168,25 +169,30 @@ export const uploadProfileImage = (file) => async (dispatch) => {
 
 export const addSocial = (obj) => async (dispatch) => {
   try {
-    let { url, title, icon } = obj;
-    //Pushin to array
+    let { url, title, icon, contactCard } = obj;
+    url = shapeUrl(icon, url);
+    let dbObj = null;
+    if (icon === "contactcard")
+      dbObj = {
+        contactCard,
+        icon,
+      };
+    else
+      dbObj = {
+        title,
+        url,
+        icon,
+      };
+      console.log(dbObj)
     await firestore
       .collection("users")
       .doc(store.getState().user.uid)
       .update({
-        socialLinks: firebase.firestore.FieldValue.arrayUnion({
-          url,
-          title,
-          icon,
-        }),
+        socialLinks: firebase.firestore.FieldValue.arrayUnion(dbObj),
       });
     //Update local state
     let arr = store.getState().user.socialLinks || [];
-    arr.push({
-      url,
-      title,
-      icon,
-    });
+    arr.push(dbObj);
     await dispatch(
       updateUser({
         socialLinks: arr,
