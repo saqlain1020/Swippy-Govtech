@@ -91,7 +91,7 @@ const ProfileHeadingCard = ({
           <Grid item xs={6}>
             <Typography align="right">
               <Button
-                variant="contained"
+                variant={direct ? "contained" : "outlined"}
                 color="primary"
                 fullWidth
                 className={classes.directBtn}

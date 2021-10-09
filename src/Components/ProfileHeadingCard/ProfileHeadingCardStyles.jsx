@@ -2,24 +2,20 @@ import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   profileTop: {
-    // display: "flex",
-    // justifyContent: "center",
-    paddingTop:130,
+    paddingTop: 130,
     [theme.breakpoints.down("xs")]: {
-      paddingTop:70,
-      // justifyContent: "flex-start",
+      paddingTop: 70,
     },
   },
   avatarBadge: {
-
     width: "200px",
     height: "200px",
-    
-    position:"absolute",
-    top:"-100px",
+
+    position: "absolute",
+    top: "-100px",
     left: "calc(50% - 100px)",
-    zIndex:1,
-    
+    zIndex: 1,
+
     "& .MuiBadge-badge": {
       padding: 8,
       height: "auto",
@@ -45,7 +41,6 @@ const useStyles = makeStyles((theme) => ({
   avatar: {
     width: "200px",
     height: "200px",
-    // marginRight: 30,
     [theme.breakpoints.down("xs")]: {
       width: "150px",
       height: "150px",
@@ -58,19 +53,16 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   description: {
-    maxWidth:350,
-    margin:"auto",
+    maxWidth: 350,
+    margin: "auto",
     [theme.breakpoints.down("xs")]: {
       fontSize: 13,
     },
   },
   directBtn: {
-    maxWidth:250,
-    // margin:"auto",
+    maxWidth: 250,
   },
   editIco: {
-    // width: 20,
-    // height: 20,
     overflow: "hidden",
     cursor: "pointer",
   },
