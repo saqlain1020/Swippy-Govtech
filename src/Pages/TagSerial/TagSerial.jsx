@@ -1,11 +1,20 @@
 import React from "react";
-import { CircularProgress, makeStyles } from "@material-ui/core";
+import {
+  CircularProgress,
+  Container,
+  makeStyles,
+  Typography,
+} from "@material-ui/core";
 import Logo from "src/Assets/images/logo.png";
 import { Button } from "@material-ui/core";
 import Particles from "react-particles-js";
 import config from "src/Util/particles.json";
 import { fetchTagUser, pairTag } from "src/Util/tagsActions";
 import { connect } from "react-redux";
+import Signup from "src/Components/Signup/Signup";
+import Login from "./../../Components/Login/Login";
+import clsx from "clsx";
+import { loaderStart, loaderStop } from "./../../Redux/loader/loaderReducer";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
   },
   container: {
+    display: "flex",
     flexFlow: "column",
     margin: 20,
     paddingTop: 30,
@@ -34,7 +44,22 @@ const useStyles = makeStyles((theme) => ({
     filter: "invert(1)",
   },
   btn: {
-    marginTop: 50,
+    minWidth: 100,
+    marginTop: 20,
+  },
+  heading: {
+    fontSize: 24,
+    marginTop: 20,
+    fontWeight: 600,
+  },
+  para: {
+    fontSize: 18,
+    [theme.breakpoints.down("xs")]: {
+      fontSize: 16,
+    },
+  },
+  green: {
+    color: theme.palette.success.dark,
   },
 }));
 
@@ -46,35 +71,56 @@ const TagSerial = ({
   currentUser,
   fetchTagUser,
   pairTag,
+  loaderStart,
+  loaderStop,
 }) => {
   const classes = useStyles();
-  const [loading, setLoading] = React.useState(true);
+  const [page, setPage] = React.useState(5);
+  const [loading, setLoading] = React.useState(false);
+
+  const pageChange = () => {
+    if (loading) {
+      setPage(5);
+      return;
+    }
+    if (!currentUser.uid) {
+      //Show Register text
+      setPage(0);
+    } else {
+      //Show Pair page
+      setPage(1);
+    }
+  };
 
   const handleTag = async () => {
+    setLoading(true);
     let user = await fetchTagUser(serial);
     if (user) {
-      let social = user.socialLinks.find((item) => item.isPrimary);
+      let social = user.socialLinks?.find((item) => item.isPrimary);
       if (social && user.direct) window.location = social.url;
       else {
         let url = `/profile/${user.username}`;
         history.push(url);
       }
+      setLoading(false);
     } else {
-      if (!currentUser.uid) {
-        history.push("/auth");
-      }
+      setLoading(false);
+      pageChange();
     }
-    setLoading(false);
   };
 
   const handlePair = async () => {
-    setLoading(true);
-    pairTag(serial, currentUser.uid);
+    await pairTag(serial, currentUser.uid);
+    setPage(4); //Pair complete
   };
 
   React.useEffect(() => {
     handleTag();
   }, []);
+
+  React.useEffect(() => {
+    pageChange();
+  }, [currentUser]);
 
   return (
     <div className={`center ${classes.root}`}>
@@ -84,23 +130,78 @@ const TagSerial = ({
         className={classes.particlesContainer}
         params={config}
       />
-      <div className={`center ${classes.container}`}>
+      <Container maxWidth="xs" className={`center ${classes.container}`}>
         <img src={Logo} width="70%" className={classes.img} alt="Swippy" />
-        <div className="flex">
-          <Button
-            className={classes.btn}
-            variant="contained"
-            color="primary"
-            onClick={handlePair}
-          >
-            {loading ? (
-              <CircularProgress color="secondary" />
-            ) : (
-              "Pair to your profile"
-            )}
-          </Button>
-        </div>
-      </div>
+        {page === 0 && (
+          <>
+            <Typography align="center" variant="h4" className={classes.heading}>
+              Welcome to the app!
+            </Typography>
+            <Typography align="center" variant="h6" className={classes.para}>
+              Load Swippy and create your new profile
+              <br />
+              Register or, if you already have a profile login and continue
+              activating.
+            </Typography>
+            <div>
+              <Button
+                className={classes.btn}
+                variant="outlined"
+                color="primary"
+                onClick={() => setPage(2)} //Register page
+              >
+                Register
+              </Button>
+              &nbsp;&nbsp;&nbsp;
+              <Button
+                className={classes.btn}
+                variant="contained"
+                color="primary"
+                onClick={() => setPage(3)} //Login page
+              >
+                Login
+              </Button>
+            </div>
+          </>
+        )}
+        {page === 1 && (
+          <>
+            <Typography align="center" variant="h4" className={classes.heading}>
+              Pair Swippy with your account
+            </Typography>
+            <Button
+              className={classes.btn}
+              variant="contained"
+              color="primary"
+              onClick={handlePair}
+            >
+              {loading ? <CircularProgress color="secondary" /> : "Pair"}
+            </Button>
+          </>
+        )}
+        {page === 2 && <Signup tagPage={true} />}
+        {page === 3 && <Login tagPage={true} />}
+        {page === 4 && (
+          <>
+            <Typography
+              align="center"
+              variant="h4"
+              color="success"
+              className={clsx(classes.heading, classes.green)}
+            >
+              Swippy successfully paired with your profile
+            </Typography>
+            <Button
+              className={classes.btn}
+              variant="outlined"
+              color="primary"
+              onClick={() => history.push("/dashboard/profile")}
+            >
+              Go to dashboard
+            </Button>
+          </>
+        )}
+      </Container>
     </div>
   );
 };
@@ -112,6 +213,8 @@ const mapState = (store) => ({
 const actions = {
   fetchTagUser,
   pairTag,
+  loaderStart,
+  loaderStop,
 };
 
 export default connect(mapState, actions)(TagSerial);

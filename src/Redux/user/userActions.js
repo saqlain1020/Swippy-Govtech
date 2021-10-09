@@ -65,7 +65,6 @@ export const signin = (email, pass) => async (dispatch) => {
       user: { uid },
     } = user;
     dispatch(setUser(await getUserData(uid)));
-    history.push("/dashboard/profile");
   } catch (error) {
     dispatch(notify(error.message, "error"));
   }
@@ -103,7 +102,6 @@ export const signup = (username, email, pass) => async (dispatch) => {
     };
     await firestore.collection("users").doc(uid).set(obj);
     dispatch(setUser(await getUserData(uid)));
-    history.push("/dashboard/profile");
   } catch (error) {
     dispatch(notify(error.message, "error"));
   }

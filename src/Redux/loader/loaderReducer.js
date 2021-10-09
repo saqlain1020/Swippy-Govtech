@@ -1,6 +1,6 @@
 import { LOADER_START, LOADER_STOP } from "./loaderConstants";
 
-const initialState = false;
+const initialState = true;
 
 const loaderReducer = (state = initialState, { type }) => {
   switch (type) {
@@ -12,5 +12,13 @@ const loaderReducer = (state = initialState, { type }) => {
       return state;
   }
 };
+
+export const loaderStart = () => ({
+  type: LOADER_START,
+});
+
+export const loaderStop = () => ({
+  type: LOADER_STOP,
+});
 
 export default loaderReducer;

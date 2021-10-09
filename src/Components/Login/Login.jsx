@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Login = ({ history, signin }) => {
+const Login = ({ history, signin, tagPage }) => {
   const classes = useStyles();
   const [show, setShow] = React.useState(false);
   const [state, setState] = React.useState({
@@ -50,9 +50,10 @@ const Login = ({ history, signin }) => {
     });
   };
 
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault();
-    signin(state.email, state.password);
+    await signin(state.email, state.password);
+    !tagPage && history.push("/dashboard/profile");
   };
 
   return (
@@ -113,22 +114,26 @@ const Login = ({ history, signin }) => {
             Log in
           </Button>
         </Grid>
-        <Grid item xs={12}>
-          <div className={classes.dividers}>
-            <Divider />
-            <Typography style={{ margin: "0px 5px" }}>OR</Typography>
-            <Divider />
-          </div>
-        </Grid>
-        <Grid item xs={12}>
-          <Button
-            variant="outlined"
-            fullWidth
-            onClick={() => history.push("/auth/signup")}
-          >
-            Sign up
-          </Button>
-        </Grid>
+        {!tagPage && (
+          <>
+            <Grid item xs={12}>
+              <div className={classes.dividers}>
+                <Divider />
+                <Typography style={{ margin: "0px 5px" }}>OR</Typography>
+                <Divider />
+              </div>
+            </Grid>
+            <Grid item xs={12}>
+              <Button
+                variant="outlined"
+                fullWidth
+                onClick={() => history.push("/auth/signup")}
+              >
+                Sign up
+              </Button>
+            </Grid>
+          </>
+        )}
       </Grid>
     </form>
   );

@@ -41,7 +41,6 @@ export const pairTag = (serial, uid) => async (dispatch) => {
     arr.push(serial);
     dispatch(updateUser({ tags: arr }));
     dispatch(notify("Tag successfully paired", "success"));
-    history.push("/dashboard/profile");
   } catch (error) {
     dispatch(notify(error.message, "error"));
   }

@@ -88,11 +88,14 @@ const ProfilePage = ({
         <ProfileHeadingCard data={data} />
         <SocialCards data={data} style={{ marginTop: 30 }} />
       </div>
-      <div className={classes.buyBtn}>
-        <Typography align="center" style={{ color: "white" }}>
-          <i className="fas fa-cart-plus"></i>&nbsp;&nbsp;Tap to get your swippy
-        </Typography>
-      </div>
+      <a href="https://shop-swippy.co/">
+        <div className={classes.buyBtn}>
+          <Typography align="center" style={{ color: "white" }}>
+            <i className="fas fa-cart-plus"></i>&nbsp;&nbsp;Tap to get your
+            swippy
+          </Typography>
+        </div>
+      </a>
     </div>
   );
 };
