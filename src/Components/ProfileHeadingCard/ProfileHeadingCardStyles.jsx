@@ -39,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   avatar: {
+    background: "white",
     width: "200px",
     height: "200px",
     [theme.breakpoints.down("xs")]: {
