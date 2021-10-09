@@ -181,7 +181,7 @@ const SocialLink = ({
           alt="social"
         />
         <Typography align="center" className={classes.text}>
-          <b>{title}</b>
+          <b>{title?title:icon}</b>
         </Typography>
       </a>
       {index !== undefined && (
