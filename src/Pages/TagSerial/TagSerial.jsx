@@ -76,13 +76,9 @@ const TagSerial = ({
 }) => {
   const classes = useStyles();
   const [page, setPage] = React.useState(5);
-  const [loading, setLoading] = React.useState(false);
+  const [loading, setLoading] = React.useState(true);
 
   const pageChange = () => {
-    if (loading) {
-      setPage(5);
-      return;
-    }
     if (!currentUser.uid) {
       //Show Register text
       setPage(0);
@@ -93,7 +89,6 @@ const TagSerial = ({
   };
 
   const handleTag = async () => {
-    setLoading(true);
     let user = await fetchTagUser(serial);
     if (user) {
       let social = user.socialLinks?.find((item) => item.isPrimary);
@@ -122,88 +117,98 @@ const TagSerial = ({
     pageChange();
   }, [currentUser]);
 
-  return (
-    <div className={`center ${classes.root}`}>
-      <Particles
-        width="100%"
-        height="100%"
-        className={classes.particlesContainer}
-        params={config}
-      />
-      <Container maxWidth="xs" className={`center ${classes.container}`}>
-        <img src={Logo} width="70%" className={classes.img} alt="Swippy" />
-        {page === 0 && (
-          <>
-            <Typography align="center" variant="h4" className={classes.heading}>
-              Welcome to the app!
-            </Typography>
-            <Typography align="center" variant="h6" className={classes.para}>
-              Load Swippy and create your new profile
-              <br />
-              Register or, if you already have a profile login and continue
-              activating.
-            </Typography>
-            <div>
-              <Button
-                className={classes.btn}
-                variant="outlined"
-                color="primary"
-                onClick={() => setPage(2)} //Register page
+  if (!loading)
+    return (
+      <div className={`center ${classes.root}`}>
+        <Particles
+          width="100%"
+          height="100%"
+          className={classes.particlesContainer}
+          params={config}
+        />
+        <Container maxWidth="xs" className={`center ${classes.container}`}>
+          <img src={Logo} width="70%" className={classes.img} alt="Swippy" />
+          {page === 0 && (
+            <>
+              <Typography
+                align="center"
+                variant="h4"
+                className={classes.heading}
               >
-                Register
-              </Button>
-              &nbsp;&nbsp;&nbsp;
+                Welcome to the app!
+              </Typography>
+              <Typography align="center" variant="h6" className={classes.para}>
+                Load Swippy and create your new profile
+                <br />
+                Register or, if you already have a profile login and continue
+                activating.
+              </Typography>
+              <div>
+                <Button
+                  className={classes.btn}
+                  variant="outlined"
+                  color="primary"
+                  onClick={() => setPage(2)} //Register page
+                >
+                  Register
+                </Button>
+                &nbsp;&nbsp;&nbsp;
+                <Button
+                  className={classes.btn}
+                  variant="contained"
+                  color="primary"
+                  onClick={() => setPage(3)} //Login page
+                >
+                  Login
+                </Button>
+              </div>
+            </>
+          )}
+          {page === 1 && (
+            <>
+              <Typography
+                align="center"
+                variant="h4"
+                className={classes.heading}
+              >
+                Pair Swippy with your account
+              </Typography>
               <Button
                 className={classes.btn}
                 variant="contained"
                 color="primary"
-                onClick={() => setPage(3)} //Login page
+                onClick={handlePair}
               >
-                Login
+                {loading ? <CircularProgress color="secondary" /> : "Pair"}
               </Button>
-            </div>
-          </>
-        )}
-        {page === 1 && (
-          <>
-            <Typography align="center" variant="h4" className={classes.heading}>
-              Pair Swippy with your account
-            </Typography>
-            <Button
-              className={classes.btn}
-              variant="contained"
-              color="primary"
-              onClick={handlePair}
-            >
-              {loading ? <CircularProgress color="secondary" /> : "Pair"}
-            </Button>
-          </>
-        )}
-        {page === 2 && <Signup tagPage={true} />}
-        {page === 3 && <Login tagPage={true} />}
-        {page === 4 && (
-          <>
-            <Typography
-              align="center"
-              variant="h4"
-              color="success"
-              className={clsx(classes.heading, classes.green)}
-            >
-              Swippy successfully paired with your profile
-            </Typography>
-            <Button
-              className={classes.btn}
-              variant="outlined"
-              color="primary"
-              onClick={() => history.push("/dashboard/profile")}
-            >
-              Go to dashboard
-            </Button>
-          </>
-        )}
-      </Container>
-    </div>
-  );
+            </>
+          )}
+          {page === 2 && <Signup tagPage={true} />}
+          {page === 3 && <Login tagPage={true} />}
+          {page === 4 && (
+            <>
+              <Typography
+                align="center"
+                variant="h4"
+                color="success"
+                className={clsx(classes.heading, classes.green)}
+              >
+                Swippy successfully paired with your profile
+              </Typography>
+              <Button
+                className={classes.btn}
+                variant="outlined"
+                color="primary"
+                onClick={() => history.push("/dashboard/profile")}
+              >
+                Go to dashboard
+              </Button>
+            </>
+          )}
+        </Container>
+      </div>
+    );
+  else return null;
 };
 
 const mapState = (store) => ({
