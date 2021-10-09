@@ -17,12 +17,13 @@ export const fetchTagUser = (tagSerial) => async (dispatch) => {
       user = doc.data();
       docId = doc.id;
     });
-    await firestore
-      .collection("users")
-      .doc(docId)
-      .update({
-        scanCount: firebase.firestore.FieldValue.increment(1),
-      });
+    if (docId)
+      await firestore
+        .collection("users")
+        .doc(docId)
+        .update({
+          scanCount: firebase.firestore.FieldValue.increment(1),
+        });
     return user;
   } catch (error) {
     dispatch(notify(error.message, "error"));
@@ -36,7 +37,7 @@ export const pairTag = (serial, uid) => async (dispatch) => {
       .collection("users")
       .doc(uid)
       .update({ tags: firebase.firestore.FieldValue.arrayUnion(serial) });
-    let arr = store.getState().user.tags;
+    let arr = store.getState().user.tags || [];
     arr.push(serial);
     dispatch(updateUser({ tags: arr }));
     dispatch(notify("Tag successfully paired", "success"));

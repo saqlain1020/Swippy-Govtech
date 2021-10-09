@@ -24,7 +24,7 @@ const QR = ({ user }) => {
   const [url, setUrl] = React.useState("");
 
   React.useEffect(() => {
-    const url = `http://${window.location.host}/profile/${user.uid}`;
+    const url = `http://${window.location.host}/profile/${user.username}`;
     setUrl(url);
   }, [user]);
 
