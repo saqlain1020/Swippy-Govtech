@@ -52,8 +52,25 @@ export const signin = (email, pass) => async (dispatch) => {
   }
 };
 
-export const signup = (name, email, pass) => async (dispatch) => {
+const isUsernameExists = async (username) => {
+  let query = await firestore
+    .collection("users")
+    .where("username", "==", username)
+    .limit(1)
+    .get();
+  let flag = false;
+  //True if user exists and false if not
+  query.forEach((doc) => {
+    if (doc.exists) flag = true;
+  });
+  return flag;
+};
+
+export const signup = (username, email, pass) => async (dispatch) => {
   try {
+    if (await isUsernameExists(username)) {
+      throw { message: "Username taken, try another username" };
+    }
     let user = await auth.createUserWithEmailAndPassword(email, pass);
     let {
       user: { uid },
@@ -61,7 +78,7 @@ export const signup = (name, email, pass) => async (dispatch) => {
     let obj = {
       uid,
       email,
-      name,
+      username,
       createdAt: serverTimestamp,
     };
     await firestore.collection("users").doc(uid).set(obj);

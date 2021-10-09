@@ -30,7 +30,7 @@ const ProfileValueDialog = ({ open, onClose, user, updateUserInfo }) => {
   const submit = async (e) => {
     e.preventDefault();
     let obj = {
-      name,
+      // name,
       description,
     };
     console.log(obj)
@@ -55,7 +55,7 @@ const ProfileValueDialog = ({ open, onClose, user, updateUserInfo }) => {
             </Typography>
             <Divider />
           </Grid>
-          <Grid item xs={12}>
+          {/* <Grid item xs={12}>
             <TextField
               fullWidth
               label="Enter Name"
@@ -63,7 +63,7 @@ const ProfileValueDialog = ({ open, onClose, user, updateUserInfo }) => {
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
-          </Grid>
+          </Grid> */}
           <Grid item xs={12}>
             <TextField
               fullWidth

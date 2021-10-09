@@ -21,7 +21,7 @@ const imgPlaceholder =
 const ProfileHeadingCard = ({
   className,
   style,
-  user: { displayPhoto, name, description, direct = false },
+  user: { displayPhoto, username, description, direct = false },
   changeDirect,
   uploadProfileImage,
   data,
@@ -79,7 +79,7 @@ const ProfileHeadingCard = ({
       {/* </center> */}
       <div className={classes.profileTop}>
         <Typography variant="h4" align="center" className={classes.heading}>
-          {data ? data.name : name}
+          {data ? data.username : username}
         </Typography>
 
         <Typography align="center" className={classes.description}>

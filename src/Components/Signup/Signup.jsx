@@ -41,7 +41,7 @@ const Signup = ({ history, signup }) => {
   const [state, setState] = React.useState({
     email: "",
     password: "",
-    name: "",
+    username: "",
   });
 
   const handleChange = (e) => {
@@ -53,7 +53,7 @@ const Signup = ({ history, signup }) => {
 
   const submit = (e) => {
     e.preventDefault();
-    signup(state.name, state.email, state.password);
+    signup(state.username, state.email, state.password);
   };
 
   return (
@@ -66,10 +66,10 @@ const Signup = ({ history, signup }) => {
             required
             type="text"
             size="small"
-            value={state.name}
-            name="name"
+            value={state.username}
+            name="username"
             onChange={handleChange}
-            placeholder="Enter Name"
+            placeholder="Enter Username"
             style={{ marginBottom: 4 }}
             InputProps={{
               startAdornment: <FaceIcon />,
