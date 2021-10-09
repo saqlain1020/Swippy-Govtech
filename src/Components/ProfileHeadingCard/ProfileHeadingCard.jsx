@@ -91,7 +91,7 @@ const ProfileHeadingCard = ({
             <Chip
               color="primary"
               size="small"
-              label={`Scan Count: ${scanCount || 0}`}
+              label={`Swippys: ${scanCount || 0}`}
               style={{ marginTop: 10 }}
             />
           </center>
