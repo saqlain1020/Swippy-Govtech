@@ -97,7 +97,6 @@ const TagSerial = ({
         let url = `/profile/${user.username}`;
         history.push(url);
       }
-      setLoading(false);
     } else {
       setLoading(false);
       pageChange();
