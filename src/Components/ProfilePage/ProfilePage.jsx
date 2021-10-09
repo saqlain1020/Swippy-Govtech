@@ -26,29 +26,76 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     top: -50,
   },
-  buyBtn: {
+  link: {
     position: "fixed",
+    bottom: 30,
+    height: 50,
     width: "90%",
     left: "5%",
-    borderRadius: 360,
-    height: 50,
-    bottom: 10,
+  },
+  buyBtn: {
+    width: "100%",
+    borderRadius: 0,
+    height: "100%",
     color: "white",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    backgroundImage:
-      "linear-gradient(to right, #051937, #004d7a, #008793, #00bf72, #a8eb12)",
+    // background: theme.palette.primary.main,
+    background: theme.colors.bg,
+    // color: "white",
+    color: "black",
     backgroundSize: "200% 200%",
-    boxShadow: theme.custom.shadow.icon,
     cursor: "pointer",
-    animation: "$buyBtn 10s infinite ease",
+    zIndex: 1,
+    border: `1px solid ${theme.palette.primary.main}`,
+    boxSizing:"border-box",
+    transition: "all 200ms ease-in-out",
+    animation: "$shake 4s cubic-bezier(.36,.07,.19,.97) infinite both",
+    "&:before": {
+      transition: "all 200ms ease-in-out",
+      boxSizing:"border-box",
+      content: "''",
+      position: "absolute",
+      zIndex: -1,
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+      background: "transparent",
+      border: `1px solid ${theme.palette.primary.main}`,
+    },
+    "&:hover": {
+      background: theme.palette.primary.main,
+      color: "white",
+    },
+    "&:hover:before": {
+      top: 7,
+      left: 7,
+    },
   },
-  "@keyframes buyBtn": {
-    "0%": { backgroundPosition: "0% 50%" },
-    "50%": { backgroundPosition: "100% 50%" },
-    "100%": { backgroundPosition: "0% 50%" },
-  },
+  "@keyframes shake":{
+    "2%, 18%": {
+      transform: "rotate(-1deg)",
+    },
+    
+    "4%, 16%":{
+      transform: "rotate(1deg)",
+    },
+  
+    "6%, 10%, 14%": {
+      transform: "rotate(-2deg)",
+    },
+  
+    "8%, 12%": {
+      transform: "rotate(2deg)",
+    }
+  }
+  // "@keyframes buyBtn": {
+  //   "0%": { backgroundPosition: "0% 50%" },
+  //   "50%": { backgroundPosition: "100% 50%" },
+  //   "100%": { backgroundPosition: "0% 50%" },
+  // },
 }));
 
 const ProfilePage = ({
@@ -88,9 +135,9 @@ const ProfilePage = ({
         <ProfileHeadingCard data={data} />
         <SocialCards data={data} style={{ marginTop: 30 }} />
       </div>
-      <a href="https://shop-swippy.co/">
+      <a href="https://shop-swippy.co/" className={classes.link}>
         <div className={classes.buyBtn}>
-          <Typography align="center" style={{ color: "white" }}>
+          <Typography align="center" style={{ color: "inherit" }}>
             <i className="fas fa-cart-plus"></i>&nbsp;&nbsp;Tap to get your
             swippy
           </Typography>

@@ -75,7 +75,7 @@ const TagSerial = ({
   loaderStop,
 }) => {
   const classes = useStyles();
-  const [page, setPage] = React.useState(5);
+  const [page, setPage] = React.useState(0);
   const [loading, setLoading] = React.useState(true);
 
   const pageChange = () => {
