@@ -31,6 +31,7 @@ import Linktree from "src/Assets/icon/linktree.png";
 import Onlyfans from "src/Assets/icon/onlyfans.png";
 import Clubhouse from "src/Assets/icon/clubhouse.png";
 import Telegram from "src/Assets/icon/telegram.png";
+import Call from "src/Assets/icon/call.png";
 import { Link } from "react-router-dom";
 import AddSocialDialog from "./../AddSocialDialog/AddSocialDialog";
 import { connect } from "react-redux";
@@ -85,6 +86,9 @@ const SocialLink = ({
         break;
       case "twitter":
         setSrc(Twitter);
+        break;
+      case "call":
+        setSrc(Call);
         break;
       case "linkedin":
         setSrc(Linkedin);

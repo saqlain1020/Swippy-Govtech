@@ -34,6 +34,7 @@ const socials = [
   { variant: "item", text: "tinder" },
   { variant: "item", text: "pinterest" },
   { variant: "category", text: "Contact" },
+  { variant: "item", text: "call" },
   { variant: "item", text: "telegram" },
   { variant: "item", text: "whatsapp" },
   { variant: "item", text: "facetime" },

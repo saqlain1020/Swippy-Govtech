@@ -16,6 +16,9 @@ export const userNameToUrl = (username, type) => {
     case "whatsapp":
       url = `12345678`;
       break;
+    case "call":
+      url = `12345678`;
+      break;
     case "link":
       url = `https://link.com`;
       break;
@@ -61,6 +64,9 @@ export const userNameToUrl = (username, type) => {
     case "email":
       url = "test@mail.com";
       break;
+    case "website":
+      url = "https://www.google.com";
+      break;
     default:
       url = `${username}`;
   }
@@ -82,6 +88,9 @@ export const shapeUrl = (type, initial) => {
       break;
     case "message":
       url = `sms:${initial}`;
+      break;
+    case "call":
+      url = `tel:${initial}`;
       break;
     case "tiktok":
       url = `https://tiktok.com/@${initial}`;
