@@ -17,14 +17,12 @@ const useStyles = makeStyles((theme) => ({
   },
   nav: {
     background: theme.palette.primary.main,
-    height: 250,
-    paddingTop: 10,
+    height: 60,
+    paddingTop: 2,
   },
   content: {
     background: theme.colors.bg,
-    borderRadius: 50,
-    position: "relative",
-    top: -50,
+    marginTop:20,
   },
   link: {
     position: "fixed",
@@ -131,7 +129,7 @@ const ProfilePage = ({
       <div className={classes.nav}>
         <center>
           <Link to="/">
-            <img src={Logo} alt="swippy" height="70px" />
+            <img src={Logo} alt="swippy" height="50px" />
           </Link>
         </center>
       </div>
@@ -139,14 +137,14 @@ const ProfilePage = ({
         <ProfileHeadingCard data={data} />
         <SocialCards data={data} style={{ marginTop: 30 }} />
       </div>
-      <a href="https://shop-swippy.co/" className={classes.link}>
+      {/* <a href="https://shop-swippy.co/" className={classes.link}>
         <div className={classes.buyBtn}>
           <Typography align="center" style={{ color: "inherit" }}>
             <i className="fas fa-cart-plus"></i>&nbsp;&nbsp;Tap to get your
             swippy
           </Typography>
         </div>
-      </a>
+      </a> */}
     </div>
   );
 };

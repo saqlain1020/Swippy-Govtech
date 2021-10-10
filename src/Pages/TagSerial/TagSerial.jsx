@@ -92,7 +92,7 @@ const TagSerial = ({
     let user = await fetchTagUser(serial);
     if (user) {
       let social = user.socialLinks?.find((item) => item.isPrimary);
-      if (social && user.direct) window.location.href = social.url;
+      if (social && user.direct) window.location.replace(social.url);
       else {
         let url = `/profile/${user.username}`;
         history.push(url);

@@ -18,10 +18,10 @@ import { deleteTag } from "./../../Redux/user/userActions";
 const useStyles = makeStyles((theme) => ({
   root: {
     //   background: theme.colors.bg,
-    minHeight: "calc(100vh - 70px)",
+    minHeight: "calc(100vh - 60px)",
     background: "#E0E5EC",
     position: "absolute",
-    top: 70,
+    top: 60,
     width: "100%",
 
     //   top:-180

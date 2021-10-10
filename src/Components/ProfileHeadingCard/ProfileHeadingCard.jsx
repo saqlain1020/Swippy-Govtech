@@ -79,57 +79,62 @@ const ProfileHeadingCard = ({
             )}
           </Badge>
           {!data && (
-            <center>
-              <Chip
-                color="primary"
-                size="small"
-                label={`Swippys: ${scanCount || 0}`}
-                style={{ marginTop: 10 }}
-              />
-            </center>
+            <Typography align="center" className={classes.chip}>
+              Swipes: {scanCount || 0}
+            </Typography>
           )}
         </div>
-        
-          <div className={classes.profileTop}>
-            <Typography variant="h4" align="center" className={classes.heading}>
-              {data ? data.username : username}
-            </Typography>
-            <Typography align="center" className={classes.description}>
-              {data ? data.description : description || "Enter description"}
-            </Typography>
-          </div>
-        
+
+        <div className={classes.profileTop}>
+          <Typography variant="h4" className={classes.heading}>
+            {data ? data.username : username}
+          </Typography>
+          <Typography className={classes.description}>
+            {data ? data.description : description || "Enter description"}
+          </Typography>
+          {!data && (
+            <Grid container spacing={1} style={{ marginTop: 10 }}>
+              <Grid item xs={6}>
+                <Button
+                  variant={direct ? "contained" : "outlined"}
+                  color="primary"
+                  fullWidth
+                  className={classes.directBtn}
+                  onClick={changeDirect}
+                >
+                  Direct {direct ? "On" : "Off"}
+                </Button>
+              </Grid>
+              <Grid item xs={6}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  fullWidth
+                  className={classes.directBtn}
+                  onClick={() => setOpen(true)}
+                >
+                  Edit Profile
+                </Button>
+              </Grid>
+            </Grid>
+          )}
+        </div>
       </div>
-
-      {!data && (
-        <Grid container spacing={2} style={{ padding: 20 }}>
-          <Grid item xs={6}>
-            <Typography align="right">
-              <Button
-                variant={direct ? "contained" : "outlined"}
-                color="primary"
-                fullWidth
-                className={classes.directBtn}
-                onClick={changeDirect}
-              >
-                Direct {direct ? "On" : "Off"}
-              </Button>
-            </Typography>
-          </Grid>
-          <Grid item xs={6}>
-            <Button
-              variant="contained"
-              color="primary"
-              fullWidth
-              className={classes.directBtn}
-              onClick={() => setOpen(true)}
-            >
-              Edit Profile
-            </Button>
-          </Grid>
-        </Grid>
-      )}
-
+      <a href="https://shop-swippy.co/">
+        <Button
+          fullWidth
+          style={{
+            maxWidth: 450,
+            margin: "auto",
+            display: "block",
+            marginTop: 10,
+          }}
+          variant="contained"
+          color="primary"
+        >
+          <i className="fas fa-cart-plus"></i>&nbsp;&nbsp;Tap to get your swippy
+        </Button>
+      </a>
       <ProfileValueDialog open={open} onClose={() => setOpen(false)} />
       <input
         style={{ display: "none" }}

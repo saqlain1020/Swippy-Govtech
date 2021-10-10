@@ -7,8 +7,9 @@ const useStyles = makeStyles((theme) => ({
   root: {
     background: theme.colors.bg,
     position: "relative",
-    top: -50,
-    borderRadius: 50,
+    marginTop:20,
+    // top: -50,
+    // borderRadius: 50,
   }, 
 }));
 

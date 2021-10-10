@@ -9,8 +9,7 @@ import { notify } from "reapop";
 
 const useStyles = makeStyles((theme) => ({
   qrContainer: {
-    position: "relative",
-    top: -100,
+    marginTop:20,    
     background: "white",
     boxShadow: theme.custom.shadow.icon,
     padding: 30,
@@ -22,7 +21,8 @@ const useStyles = makeStyles((theme) => ({
   },
   shareWrapper: {
     position: "relative",
-    top: -60,
+    marginTop:20,
+    paddingBottom:100,
   },
 }));
 

@@ -20,8 +20,8 @@ const useStyles = makeStyles((theme) => ({
   nav: {
     background: theme.palette.primary.main,
     // paddingLeft: 100,
-    height: "250px",
-    paddingTop: 5,
+    height: "65px",
+    paddingTop: 6,
     display: "flex",
     justifyContent: "center",
     paddingBottom: 5,

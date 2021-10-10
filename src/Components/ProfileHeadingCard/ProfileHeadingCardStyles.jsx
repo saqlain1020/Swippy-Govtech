@@ -3,8 +3,11 @@ import { makeStyles } from "@material-ui/core";
 const useStyles = makeStyles((theme) => ({
   profileTop: {
     paddingTop: 20,
+    marginLeft:20,
+    width:250,
     [theme.breakpoints.down("xs")]: {
-      // paddingTop: 70,
+      marginLeft:10,
+      paddingTop: 5,
     },
   },
   avatarBadge: {
@@ -32,7 +35,6 @@ const useStyles = makeStyles((theme) => ({
       },
     },
     [theme.breakpoints.down("xs")]: {
-      left: "calc(50% - 75px)",
       width: "100px",
       height: "100px",
     },
@@ -60,7 +62,12 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   directBtn: {
+    fontSize:12,
+    whiteSpace:"pre",
     maxWidth: 250,
+    [theme.breakpoints.down('xs')]:{
+      fontSize:10,
+    }
   },
   editIco: {
     overflow: "hidden",
@@ -78,6 +85,14 @@ const useStyles = makeStyles((theme) => ({
     justifyContent:"center",
     alignItems:"flex-start",
     margin:"auto",
+  },
+  chip:{
+    marginTop:10,
+    fontSize:14,
+    color: "#222",
+    fontWeight:600,
+    letterSpacing:0,
+
   }
 }));
 
