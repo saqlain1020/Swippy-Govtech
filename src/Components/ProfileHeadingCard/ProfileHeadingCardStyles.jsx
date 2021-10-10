@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
   directBtn: {
     fontSize:12,
     whiteSpace:"pre",
-    maxWidth: 250,
+    // maxWidth: 250,
     [theme.breakpoints.down('xs')]:{
       fontSize:10,
     }

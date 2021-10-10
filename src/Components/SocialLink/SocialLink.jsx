@@ -42,7 +42,7 @@ import { generateVCF } from "./../../Util/socialFunctions";
 const useStyles = makeStyles((theme) => ({
   root: {},
   img: {
-    borderRadius: 40,
+    borderRadius: 30,
     overflow: "hidden",
     boxShadow: theme.custom.shadow.icon,
   },
@@ -174,8 +174,8 @@ const SocialLink = ({
         }}
       >
         <img
-          width="150px"
-          height="150px"
+          width="110px"
+          height="110px"
           className={classes.img}
           src={src}
           alt="social"

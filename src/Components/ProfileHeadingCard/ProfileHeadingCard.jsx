@@ -22,7 +22,14 @@ const imgPlaceholder =
 const ProfileHeadingCard = ({
   className,
   style,
-  user: { displayPhoto, username, scanCount, description, direct = false },
+  user: {
+    displayPhoto,
+    name,
+    username,
+    scanCount,
+    description,
+    direct = false,
+  },
   changeDirect,
   uploadProfileImage,
   data,
@@ -87,54 +94,62 @@ const ProfileHeadingCard = ({
 
         <div className={classes.profileTop}>
           <Typography variant="h4" className={classes.heading}>
-            {data ? data.username : username}
+            {data ? data.name : name}
           </Typography>
           <Typography className={classes.description}>
             {data ? data.description : description || "Enter description"}
           </Typography>
-          {!data && (
-            <Grid container spacing={1} style={{ marginTop: 10 }}>
-              <Grid item xs={6}>
-                <Button
-                  variant={direct ? "contained" : "outlined"}
-                  color="primary"
-                  fullWidth
-                  className={classes.directBtn}
-                  onClick={changeDirect}
-                >
-                  Direct {direct ? "On" : "Off"}
-                </Button>
-              </Grid>
-              <Grid item xs={6}>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  fullWidth
-                  className={classes.directBtn}
-                  onClick={() => setOpen(true)}
-                >
-                  Edit Profile
-                </Button>
-              </Grid>
-            </Grid>
-          )}
         </div>
       </div>
-      <a href="https://shop-swippy.co/">
-        <Button
-          fullWidth
-          style={{
-            maxWidth: 450,
-            margin: "auto",
-            display: "block",
-            marginTop: 10,
-          }}
-          variant="contained"
-          color="primary"
+      {data && (
+        <a href="https://shop-swippy.co/">
+          <Button
+            fullWidth
+            style={{
+              maxWidth: 450,
+              margin: "auto",
+              display: "block",
+              marginTop: 10,
+            }}
+            variant="contained"
+            color="primary"
+          >
+            <i className="fas fa-cart-plus"></i>&nbsp;&nbsp;Tap to get your
+            swippy
+          </Button>
+        </a>
+      )}
+      {!data && (
+        <Grid
+          container
+          spacing={1}
+          style={{ marginTop: 10, maxWidth: 500, margin: "auto" }}
         >
-          <i className="fas fa-cart-plus"></i>&nbsp;&nbsp;Tap to get your swippy
-        </Button>
-      </a>
+          <Grid item xs={6}>
+            <Button
+              variant={direct ? "contained" : "outlined"}
+              color="primary"
+              fullWidth
+              className={classes.directBtn}
+              onClick={changeDirect}
+            >
+              Direct {direct ? "On" : "Off"}
+            </Button>
+          </Grid>
+          <Grid item xs={6}>
+            <Button
+              variant="contained"
+              color="primary"
+              fullWidth
+              className={classes.directBtn}
+              onClick={() => setOpen(true)}
+            >
+              Edit Profile
+            </Button>
+          </Grid>
+        </Grid>
+      )}
+
       <ProfileValueDialog open={open} onClose={() => setOpen(false)} />
       <input
         style={{ display: "none" }}

@@ -95,7 +95,7 @@ const TagSerial = ({
       if (social && user.direct) window.location.replace(social.url);
       else {
         let url = `/profile/${user.username}`;
-        history.push(url);
+        history.replace(url);
       }
     } else {
       setLoading(false);

@@ -98,6 +98,7 @@ export const signup = (username, email, pass) => async (dispatch) => {
       uid,
       email,
       username,
+      name: username,
       scanCount: 0,
       createdAt: serverTimestamp,
     };
@@ -183,7 +184,7 @@ export const addSocial = (obj) => async (dispatch) => {
         url,
         icon,
       };
-      console.log(dbObj)
+    console.log(dbObj);
     await firestore
       .collection("users")
       .doc(store.getState().user.uid)
