@@ -1,3 +1,9 @@
+## Live demo link
+https://silly-clarke-deeac2.netlify.app/
+
+### To connect tag with your profile or to view someone else
+https://silly-clarke-deeac2.netlify.app/tag/{serialofnfctag}
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
