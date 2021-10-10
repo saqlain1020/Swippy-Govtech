@@ -75,7 +75,7 @@ export const shapeUrl = (type, initial) => {
       url = `https://www.twitter.com/${initial}`;
       break;
     case "message":
-      url = `tel:${initial}`;
+      url = `sms:${initial}`;
       break;
     case "tiktok":
       url = `https://tiktok.com/@${initial}`;
