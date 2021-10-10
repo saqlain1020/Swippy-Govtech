@@ -123,7 +123,7 @@ const ProfileHeadingCard = ({
         <Grid
           container
           spacing={1}
-          style={{ marginTop: 10, maxWidth: 500, margin: "auto" }}
+          style={{ marginTop: 12, maxWidth: 500, margin: "auto" }}
         >
           <Grid item xs={6}>
             <Button

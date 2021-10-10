@@ -6,7 +6,8 @@
   outline: none;
 }
 body{
-  background-color: #F3F5F9;
+  /* background-color: #F3F5F9; */
+  background-color: white;
 }
 .center {
   display: flex;

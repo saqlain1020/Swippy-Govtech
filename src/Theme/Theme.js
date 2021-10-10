@@ -106,7 +106,8 @@ const theme = createMuiTheme({
     },
   },
   colors: {
-    bg: "#F3F5F9",
+    // bg: "#F3F5F9",
+    bg: "transparent",
     vibrant: "#BA3029",
   },
   custom: {

@@ -8,9 +8,9 @@ import { connect } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   addBtn: {
-    width: 110,
-    height: 110,
-    borderRadius: 40,
+    width: 130,
+    height: 130,
+    borderRadius: 30,
   },
   addIco: {
     width: 60,
@@ -28,7 +28,11 @@ const SocialCards = ({ style, className, user: { socialLinks }, data }) => {
   const [open, setOpen] = React.useState(false);
 
   return (
-    <Container maxWidth="lg" style={{ ...style }} className={className}>
+    <Container
+      maxWidth="lg"
+      style={{ paddingLeft: 30, paddingRight: 30, paddingBottom: 30, ...style }}
+      className={className}
+    >
       <Grid container spacing={2}>
         {!data &&
           socialLinks &&

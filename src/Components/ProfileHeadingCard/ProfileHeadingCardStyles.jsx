@@ -4,8 +4,9 @@ const useStyles = makeStyles((theme) => ({
   profileTop: {
     paddingTop: 20,
     marginLeft: 20,
-    width: 250,
+    width: 350,
     [theme.breakpoints.down("xs")]: {
+      width: 220,
       marginLeft: 10,
       paddingTop: 5,
     },

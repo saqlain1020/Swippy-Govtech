@@ -40,7 +40,9 @@ import StarIcon from "@material-ui/icons/Star";
 import { generateVCF } from "./../../Util/socialFunctions";
 
 const useStyles = makeStyles((theme) => ({
-  root: {},
+  root: {
+    marginBottom: 10,
+  },
   img: {
     borderRadius: 30,
     overflow: "hidden",
@@ -165,7 +167,7 @@ const SocialLink = ({
   };
 
   return (
-    <div>
+    <div className={classes.root}>
       <a
         href={icon === "contactcard" ? null : url}
         className={classes.root}
@@ -174,14 +176,14 @@ const SocialLink = ({
         }}
       >
         <img
-          width="110px"
-          height="110px"
+          width="130px"
+          height="130px"
           className={classes.img}
           src={src}
           alt="social"
         />
         <Typography align="center" className={classes.text}>
-          <b>{title?title:icon}</b>
+          <b>{title ? title : icon}</b>
         </Typography>
       </a>
       {index !== undefined && (
