@@ -51,8 +51,8 @@ const useStyles = makeStyles((theme) => ({
   text: {
     fontSize: 16,
     color: "black",
-    fontFamily:  "'Roboto', sans-serif",
-    letterSpacing:1,
+    fontFamily: "'Roboto', sans-serif",
+    letterSpacing: 1,
     fontWeight: 400,
     marginTop: 10,
   },
@@ -185,7 +185,8 @@ const SocialLink = ({
           alt="social"
         />
         <Typography align="center" className={classes.text}>
-          {title ? title : icon}
+          {/* Capitalizing first letter */}
+          {title ? title : `${icon[0].toUpperCase() + icon.slice(1)}`}
         </Typography>
       </a>
       {index !== undefined && (
