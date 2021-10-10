@@ -8,6 +8,7 @@ import { storage } from "./../../Firebase/Firebase";
 import firebase from "src/Firebase/Firebase";
 import sizeof from "firestore-size";
 import { shapeUrl } from "src/Util/socialFunctions";
+import { generateVCFUrl } from "./../../Util/socialFunctions";
 
 export const setUser = (user) => {
   return {
@@ -51,7 +52,7 @@ export const getUserData = async (uid) => {
     let query = await firestore.collection("users").doc(uid).get();
     let displayPhoto = await getProfilePhoto(uid);
     let data = query.data();
-    console.log(data)
+    console.log(data);
     console.log(sizeof(data));
     data.displayPhoto = displayPhoto;
     return data;
@@ -172,10 +173,15 @@ export const uploadProfileImage = (file) => async (dispatch) => {
 export const addSocial = (obj) => async (dispatch) => {
   try {
     let { url, title, icon, contactCard } = obj;
-    url = shapeUrl(icon, url);
+    if (contactCard && !url) url = generateVCFUrl(contactCard);
+    else url = shapeUrl(icon, url);
+
+    console.log(url)
+
     let dbObj = null;
     if (icon === "contactcard")
       dbObj = {
+        url,
         contactCard,
         icon,
       };

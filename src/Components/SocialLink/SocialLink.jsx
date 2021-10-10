@@ -37,7 +37,6 @@ import { connect } from "react-redux";
 import { deleteSocial, changePrimary } from "src/Redux/user/userActions";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
 import StarIcon from "@material-ui/icons/Star";
-import { generateVCF } from "./../../Util/socialFunctions";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -171,11 +170,8 @@ const SocialLink = ({
   return (
     <div className={classes.root}>
       <a
-        href={icon === "contactcard" ? null : url}
+        href={url}
         className={classes.root}
-        onClick={() => {
-          icon === "contactcard" && generateVCF(contactCard);
-        }}
       >
         <img
           width="130px"
@@ -184,6 +180,7 @@ const SocialLink = ({
           src={src}
           alt="social"
         />
+        {console.log(title,icon)}
         <Typography align="center" className={classes.text}>
           {/* Capitalizing first letter */}
           {title ? title : `${icon[0].toUpperCase() + icon.slice(1)}`}
@@ -236,7 +233,6 @@ SocialLink.propTypes = {
 
 SocialLink.defaultProps = {
   icon: "link",
-  title: "Link",
   url: "",
   id: null,
 };

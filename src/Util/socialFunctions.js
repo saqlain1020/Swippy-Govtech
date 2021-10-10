@@ -55,6 +55,12 @@ export const userNameToUrl = (username, type) => {
     case "text":
       url = "Enter text";
       break;
+    case "contactcard":
+      url = "contactcard";
+      break;
+    case "email":
+      url = "test@mail.com";
+      break;
     default:
       url = `${username}`;
   }
@@ -94,7 +100,7 @@ export const shapeUrl = (type, initial) => {
       url = `/text/${initial}`;
       break;
     case "linktree":
-      url = `linktr.ee/${initial}`;
+      url = `https://linktr.ee/${initial}`;
       break;
     case "onlyfans":
       url = `https://onlyfans.com/${initial}`;
@@ -105,15 +111,15 @@ export const shapeUrl = (type, initial) => {
     default:
       url = initial;
   }
-  console.log(url);
   return url;
 };
 
-export const generateVCF = (contactCard = {}) => {
+export const generateVCFUrl = (contactCard = {}) => {
   let { name = "", email = "", phoneNumber = "" } = contactCard;
   let str = `BEGIN:VCARD\nFN:${name}\nEMAIL;TYPE=internet,pref:${email}\nTEL;TYPE=work,voice:${phoneNumber}\nEND:VCARD`;
-
-  return downloadString(str, "text/vcf", "download.vcf");
+  var url = "data:text/vcard;charset=utf-8," + encodeURIComponent(str);
+  console.log(url);
+  return url;
 };
 
 function downloadString(text, fileType, fileName) {
