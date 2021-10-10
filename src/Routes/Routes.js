@@ -8,6 +8,7 @@ import Signout from "./../Components/Signout/Signout";
 import history from "./history";
 import ProfilePage from "src/Components/ProfilePage/ProfilePage";
 import TagSerial from "src/Pages/TagSerial/TagSerial";
+import TextPage from "src/Pages/TextPage/TextPage";
 
 const Routes = () => {
   return (
@@ -17,6 +18,7 @@ const Routes = () => {
       <Route path={"/test"} component={Test} />
       <Route path={"/auth"} component={Auth} />
       <Route path={"/tag/:serial"} component={TagSerial} exact />
+      <Route path= {"/text/:text"} component={TextPage} exact/>
       <AuthenticatedRoute
         path={"/dashboard"}
         render={(props) => <UserRoutes />}

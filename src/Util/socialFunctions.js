@@ -52,6 +52,9 @@ export const userNameToUrl = (username, type) => {
     case "podcast":
       url = "Your podcast link";
       break;
+    case "text":
+      url = "Enter text";
+      break;
     default:
       url = `${username}`;
   }
@@ -88,7 +91,7 @@ export const shapeUrl = (type, initial) => {
       url = `https://soundcloud.com/${initial}`;
       break;
     case "text":
-      url = initial;
+      url = `/text/${initial}`;
       break;
     case "linktree":
       url = `linktr.ee/${initial}`;
