@@ -51,7 +51,9 @@ const useStyles = makeStyles((theme) => ({
   text: {
     fontSize: 16,
     color: "black",
-    fontWeight: 600,
+    fontFamily:  "'Roboto', sans-serif",
+    letterSpacing:1,
+    fontWeight: 400,
     marginTop: 10,
   },
   activeIcon: {
@@ -183,7 +185,7 @@ const SocialLink = ({
           alt="social"
         />
         <Typography align="center" className={classes.text}>
-          <b>{title ? title : icon}</b>
+          {title ? title : icon}
         </Typography>
       </a>
       {index !== undefined && (
