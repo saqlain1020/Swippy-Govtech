@@ -32,8 +32,7 @@ const ProfileValueDialog = ({ open, onClose, user, updateUserInfo }) => {
     let obj = {
       name,
       description,
-    };
-    console.log(obj)
+    };    
     await updateUserInfo(obj);
     onClose();
   };

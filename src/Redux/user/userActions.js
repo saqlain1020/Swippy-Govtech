@@ -51,6 +51,7 @@ export const getUserData = async (uid) => {
     let query = await firestore.collection("users").doc(uid).get();
     let displayPhoto = await getProfilePhoto(uid);
     let data = query.data();
+    console.log(data)
     console.log(sizeof(data));
     data.displayPhoto = displayPhoto;
     return data;
